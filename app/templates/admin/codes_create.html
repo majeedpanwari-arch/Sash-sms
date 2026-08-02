@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Generate New Access Codes - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="breadcrumb">
+            <h4><i class="fa fa-plus-circle"></i> Generate New Access Codes</h4>
+        </div>
+    </div>
+</div>
+
+<div class="widget-block">
+    <div class="widget-head">
+        <h5><i class="fa fa-key"></i> Generate New Access Codes</h5>
+    </div>
+    <div class="widget-content">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ring Tier *</label>
+                        <select name="ring_id" class="form-control" required>
+                            <option value="">-- Select Ring Tier --</option>
+                            {% for ring in rings %}
+                            <option value="{{ ring.id }}" data-price="{{ ring.price }}" data-currency="{{ ring.currency }}">
+                                {{ ring.name }} - {{ ring.price }} {{ ring.currency }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <small class="text-muted">Each generated code will be associated with the selected ring tier price.</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Number of Codes *</label>
+                        <input type="number" name="count" class="form-control" value="1" min="1" max="1000" required>
+                        <small class="text-muted">Enter quantity of codes to generate (1-1000)</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i>
+                <strong>Note:</strong> Each code consists of:
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Random Code (8 alphanumeric chars) - Example: <code>AB12CD34</code></li>
+                    <li>Random Number (4 digits) - Example: <code>1234</code></li>
+                </ul>
+                <p style="margin-top: 10px;">
+                    <strong id="price-preview">Select a ring tier to view price summary</strong>
+                </p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="fa fa-plus-circle"></i> Generate Codes
+                </button>
+                <a href="{{ url_for('rings.codes_list') }}" class="btn btn-default">
+                    <i class="fa fa-arrow-left"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if rings|length == 0 %}
+<div class="alert alert-warning">
+    <i class="fa fa-exclamation-triangle"></i>
+    <strong>Warning:</strong> No active ring tiers found.
+    <a href="{{ url_for('rings.create_ring') }}">Create a new ring tier</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelector('select[name="ring_id"]').addEventListener('change', function() {
+    const selected = this.options[this.selectedIndex];
+    const price = parseFloat(selected.dataset.price) || 0;
+    const currency = selected.dataset.currency || 'USD';
+    const count = parseInt(document.querySelector('input[name="count"]').value) || 1;
+    const total = price * count;
+
+    document.getElementById('price-preview').innerHTML =
+        `Unit Price: <strong>${price} ${currency}</strong><br>` +
+        `Codes Count: <strong>${count}</strong><br>` +
+        `Total Price: <strong>${total} ${currency}</strong>`;
+});
+
+document.querySelector('input[name="count"]').addEventListener('input', function() {
+    document.querySelector('select[name="ring_id"]').dispatchEvent(new Event('change'));
+});
+</script>
+{% endblock %}

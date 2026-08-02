@@ -1,0 +1,14 @@
+[Unit]
+Description=ABYSS SMS Flask Application Server
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/abyss_sms
+ExecStart=/var/www/abyss_sms/venv/bin/gunicorn --workers 4 --bind 127.0.0.1:20168 wsgi:app
+Restart=always
+RestartSec=5
+Environment=FLASK_ENV=production
+
+[Install]
+WantedBy=multi-user.target

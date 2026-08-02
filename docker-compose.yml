@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: abyss_sms_web
+    restart: always
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=change_this_to_a_random_secure_secret_key_12345
+      - DATABASE_URL=postgresql://abyss_user:abyss_password@db:5432/abyss_sms_db
+    ports:
+      - "20168:20168"
+    depends_on:
+      - db
+    volumes:
+      - ./instance:/app/instance
+
+  db:
+    image: postgres:16-alpine
+    container_name: abyss_sms_db
+    restart: always
+    environment:
+      - POSTGRES_USER=abyss_user
+      - POSTGRES_PASSWORD=abyss_password
+      - POSTGRES_DB=abyss_sms_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

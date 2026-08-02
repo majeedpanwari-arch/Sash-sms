@@ -1,0 +1,24 @@
+server {
+    listen 80;
+    server_name YOUR_DOMAIN_HERE www.YOUR_DOMAIN_HERE;
+
+    client_max_body_size 50M;
+
+    # Static file caching
+    location /static/ {
+        alias /var/www/abyss_sms/app/static/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    # Proxy to Gunicorn
+    location / {
+        proxy_pass http://127.0.0.1:20168;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+}

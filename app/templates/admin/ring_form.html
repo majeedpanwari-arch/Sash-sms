@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Edit Ring' if ring else 'Add New Ring' }} - Admin Panel{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="breadcrumb">
+            <h4>
+                <i class="fa fa-circle"></i>
+                {{ 'Edit Ring' if ring else 'Add New Ring' }}
+            </h4>
+        </div>
+    </div>
+</div>
+
+<div class="widget-block">
+    <div class="widget-head">
+        <h5>
+            <i class="fa {{ 'fa-edit' if ring else 'fa-plus' }}"></i>
+            {{ 'Edit Ring' if ring else 'Add New Ring' }}
+        </h5>
+    </div>
+    <div class="widget-content">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ring Name *</label>
+                        <input type="text" name="name" class="form-control" required
+                               value="{{ ring.name if ring else '' }}"
+                               placeholder="e.g. Gold Ring">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Price ({{ ring.currency if ring else 'USD' }}) *</label>
+                        <input type="number" name="price" class="form-control" step="0.01" required
+                               value="{{ ring.price if ring else '0' }}"
+                               placeholder="0.00">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select name="currency" class="form-control">
+                            <option value="USD" {{ 'selected' if ring and ring.currency == 'USD' else '' }}>USD - US Dollar</option>
+                            <option value="EUR" {{ 'selected' if ring and ring.currency == 'EUR' else '' }}>EUR - Euro</option>
+                            <option value="GBP" {{ 'selected' if ring and ring.currency == 'GBP' else '' }}>GBP - British Pound</option>
+                            <option value="EGP" {{ 'selected' if ring and ring.currency == 'EGP' else '' }}>EGP - Egyptian Pound</option>
+                            <option value="SAR" {{ 'selected' if ring and ring.currency == 'SAR' else '' }}>SAR - Saudi Riyal</option>
+                            <option value="AED" {{ 'selected' if ring and ring.currency == 'AED' else '' }}>AED - UAE Dirham</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Display Sort Order</label>
+                        <input type="number" name="sort_order" class="form-control"
+                               value="{{ ring.sort_order if ring else '0' }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <div class="input-group">
+                            <input type="color" name="color" class="form-control"
+                                   value="{{ ring.color if ring else '#00d4ff' }}"
+                                   style="height: 45px; width: 80px;">
+                            <input type="text" class="form-control" id="color-text"
+                                   value="{{ ring.color if ring else '#00d4ff' }}"
+                                   style="margin-left: 5px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Icon</label>
+                        <select name="icon" class="form-control">
+                            <option value="fa-circle" {{ 'selected' if ring and ring.icon == 'fa-circle' else '' }}>● Circle</option>
+                            <option value="fa-star" {{ 'selected' if ring and ring.icon == 'fa-star' else '' }}>★ Star</option>
+                            <option value="fa-diamond" {{ 'selected' if ring and ring.icon == 'fa-diamond' else '' }}>◆ Diamond</option>
+                            <option value="fa-square" {{ 'selected' if ring and ring.icon == 'fa-square' else '' }}>■ Square</option>
+                            <option value="fa-crown" {{ 'selected' if ring and ring.icon == 'fa-crown' else '' }}>♔ Crown</option>
+                            <option value="fa-gem" {{ 'selected' if ring and ring.icon == 'fa-gem' else '' }}>💎 Gem</option>
+                            <option value="fa-fire" {{ 'selected' if ring and ring.icon == 'fa-fire' else '' }}>🔥 Fire</option>
+                            <option value="fa-bolt" {{ 'selected' if ring and ring.icon == 'fa-bolt' else '' }}>⚡ Bolt</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Custom Link (Optional)</label>
+                <input type="url" name="custom_link" class="form-control"
+                       value="{{ ring.custom_link if ring else '' }}"
+                       placeholder="https://example.com/ring-link">
+                <small class="text-muted">The destination URL users are redirected to upon successful code verification.</small>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" class="form-control" rows="3"
+                          placeholder="Ring description...">{{ ring.description if ring else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Features</label>
+                <textarea name="features" class="form-control" rows="3"
+                          placeholder="Features (one feature per line)...">{{ ring.features if ring else '' }}</textarea>
+                <small class="text-muted">Enter each feature on a new line.</small>
+            </div>
+
+            {% if ring %}
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="is_active" value="1" {{ 'checked' if ring.is_active else '' }}>
+                    Active
+                </label>
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save"></i> Save
+                </button>
+                <a href="{{ url_for('rings.rings_list') }}" class="btn btn-default">
+                    <i class="fa fa-arrow-left"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelector('input[name="color"]').addEventListener('input', function(e) {
+    document.getElementById('color-text').value = e.target.value;
+});
+document.getElementById('color-text').addEventListener('input', function(e) {
+    document.querySelector('input[name="color"]').value = e.target.value;
+});
+</script>
+{% endblock %}
