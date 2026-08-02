@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Sash SMS{% endblock %}</title>
+    <script>
+        (function() {
+            var t = localStorage.getItem('sash_theme');
+            if (t === 'dark') {
+                document.documentElement.classList.add('theme-dark');
+            }
+        })();
+    </script>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
     <link href="/static/css/styles.css" rel="stylesheet">
@@ -352,9 +360,9 @@
     </a>
     <div class="topbar-spacer"></div>
     <div class="topbar-user">
-        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
-            <i class="fa fa-moon"></i>
-            <span class="theme-text">Dark</span>
+        <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+            <i class="fa fa-moon" id="themeIcon" style="color: #D89A57;"></i>
+            <span id="themeLabel">Dark</span>
         </button>
         <span class="u-details">
             <strong>{{ current_user.username }}</strong>
@@ -600,30 +608,40 @@ function toggleTheme() {
     }
 }
 
-function updateThemeIcon(isLight) {
-    var icon = document.querySelector('.theme-toggle .fa');
-    var text = document.querySelector('.theme-toggle .theme-text');
-    if (isLight) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-        if (text) text.textContent = 'Light';
+function updateThemeUI(isDark) {
+    var icon = document.getElementById('themeIcon');
+    var label = document.getElementById('themeLabel');
+    
+    if (isDark) {
+        document.documentElement.classList.add('theme-dark');
+        document.body.classList.add('theme-dark');
+        if (icon) {
+            icon.className = 'fa fa-sun';
+            icon.style.color = '#F1C27D';
+        }
+        if (label) label.textContent = 'Light';
     } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-        if (text) text.textContent = 'Dark';
+        document.documentElement.classList.remove('theme-dark');
+        document.body.classList.remove('theme-dark');
+        if (icon) {
+            icon.className = 'fa fa-moon';
+            icon.style.color = '#D89A57';
+        }
+        if (label) label.textContent = 'Dark';
     }
 }
 
-// Load saved theme on page load
-(function() {
-    var savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('theme-light');
-        updateThemeIcon(true);
-    } else {
-        updateThemeIcon(false);
-    }
-})();
+function toggleTheme() {
+    var isDark = !document.documentElement.classList.contains('theme-dark');
+    localStorage.setItem('sash_theme', isDark ? 'dark' : 'light');
+    updateThemeUI(isDark);
+}
+
+// Load saved theme state
+document.addEventListener('DOMContentLoaded', function() {
+    var savedTheme = localStorage.getItem('sash_theme');
+    updateThemeUI(savedTheme === 'dark');
+});
 
 /* ── Sidebar toggle (mobile) ──────────────────── */
 function toggleSidebar() {

@@ -61,6 +61,47 @@
     --warn: #E8A54B;
 }
 
+/* ── Dark Mode Overrides (Warm Amber Obsidian Theme) ──── */
+html.theme-dark, body.theme-dark, .theme-dark {
+    --bg-primary: #0E0F14;
+    --bg-secondary: #161822;
+    --bg-tertiary: #1C1E2B;
+    --bg-card: rgba(22, 24, 34, 0.85);
+    --bg-card-hover: rgba(28, 30, 43, 0.95);
+    --bg-glass: rgba(22, 24, 34, 0.78);
+    --bg-sidebar: rgba(22, 24, 34, 0.85);
+    --bg-navbar: rgba(22, 24, 34, 0.85);
+
+    --primary-accent: #D89A57;
+    --secondary-accent: #E9C69B;
+    --highlight: rgba(216, 154, 87, 0.15);
+
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --border-accent: rgba(216, 154, 87, 0.3);
+    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(216, 154, 87, 0.06);
+
+    --bg: #0E0F14;
+    --card: #161822;
+    --hover: rgba(216, 154, 87, 0.14);
+    --border: rgba(255, 255, 255, 0.08);
+    --txt: #F3F4F6;
+    --muted: #9CA3AF;
+}
+
+html.theme-dark body, body.theme-dark {
+    background-color: #0E0F14 !important;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(216, 154, 87, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(22, 24, 34, 0.9) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(14, 15, 20, 0.9) 0px, transparent 50%) !important;
+    color: #F3F4F6 !important;
+}
+
 /* ── Reset & General Typography ──────────────────────── */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -228,7 +269,48 @@ a:hover {
     outline: none !important;
 }
 
-/* Primary Warm Amber Gradient Button */
+/* ── Theme Toggle Button Styling ──────────────────────── */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08)) !important;
+    border-radius: 999px !important;
+    padding: 6px 14px !important;
+    cursor: pointer !important;
+    color: var(--text-primary, #202020) !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 12.5px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03) !important;
+    outline: none !important;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px) !important;
+    background: #FFFFFF !important;
+    border-color: rgba(216, 154, 87, 0.4) !important;
+    box-shadow: 0 8px 20px rgba(216, 154, 87, 0.2) !important;
+    color: var(--primary-accent, #D89A57) !important;
+}
+
+html.theme-dark .theme-toggle, body.theme-dark .theme-toggle {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #F3F4F6 !important;
+}
+
+html.theme-dark .theme-toggle:hover, body.theme-dark .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-color: rgba(216, 154, 87, 0.4) !important;
+    color: #F1C27D !important;
+}
+
+/* ── Primary Warm Amber Gradient Button ──────────────── */
 .btn-primary, .btn-submit, .login-btn {
     background: var(--accent-gradient, linear-gradient(135deg, #D89A57 0%, #F1C27D 100%)) !important;
     color: #ffffff !important;
