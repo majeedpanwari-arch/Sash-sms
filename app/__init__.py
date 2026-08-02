@@ -29,6 +29,36 @@ SECURITY_HEADERS = {
 }
 
 
+def _ensure_seed_data():
+    try:
+        db.create_all()
+        from app.models.user import User, Role
+        from app.models.sms import SMDRange
+
+        for role_name, display in [('admin', 'Administrator'), ('agent', 'Agent'),
+                                    ('client', 'Client'), ('developer', 'Developer')]:
+            if not Role.query.filter_by(name=role_name).first():
+                db.session.add(Role(name=role_name, display_name=display))
+        db.session.commit()
+
+        admin_role = Role.query.filter_by(name='admin').first()
+        admin = User.query.filter_by(username='admin').first()
+        if not admin:
+            admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
+            admin = User(
+                username='admin',
+                email='admin@system.local',
+                role=admin_role,
+                is_active=True,
+            )
+            admin.set_password(admin_password)
+            admin.generate_api_token()
+            db.session.add(admin)
+            db.session.commit()
+    except Exception as e:
+        print(f"[Seed Exception] {e}")
+
+
 def create_app(config_name='default'):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
@@ -49,7 +79,17 @@ def create_app(config_name='default'):
     @login_manager.user_loader
     def load_user(user_id):
         from app.models.user import User
-        return User.query.get(int(user_id))
+        try:
+            uid = int(user_id)
+        except (ValueError, TypeError):
+            return None
+
+        user = User.query.get(uid)
+        if not user:
+            # On Vercel serverless cold-start across containers, ensure seed executes if user is missing
+            _ensure_seed_data()
+            user = User.query.get(uid)
+        return user
 
     # ── Jinja2 Filters ──────────────────────────────────────────────────────────
     @app.template_filter('mask_last_7')
