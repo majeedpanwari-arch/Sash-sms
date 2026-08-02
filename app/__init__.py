@@ -115,11 +115,20 @@ def create_app(config_name='default'):
     app.register_blueprint(honeypot_bp)
     app.register_blueprint(rings_bp)  # Register Rings Blueprint
 
-    from app.routes.sms_monitor import start_background_worker
-    start_background_worker(app)
+    # Don't start background threads when running inside Vercel serverless environment
+    is_vercel = bool(os.environ.get('VERCEL') or os.environ.get('VERCEL_ENV') or os.environ.get('AWS_LAMBDA_FUNCTION_NAME'))
+    if not is_vercel:
+        try:
+            from app.routes.sms_monitor import start_background_worker
+            start_background_worker(app)
+        except Exception as e:
+            print(f"[Monitor] Background worker skipped/error: {e}")
 
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+        except Exception as e:
+            print(f"[Database Init Error] {e}")
 
         # ── Create Rings tables (Rings System) ───────────────────────────────
         from sqlalchemy import text, inspect as sa_inspect

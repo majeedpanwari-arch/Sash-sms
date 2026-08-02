@@ -22,7 +22,6 @@ instance/
 .env
 .env.*
 *.cfg
-config.py
 
 # Logs
 *.log
