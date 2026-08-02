@@ -23,7 +23,7 @@ def _get_db_uri():
 
 class Config:
     # ── Secret key ──────────────────────────────────────────────────────────
-    SECRET_KEY = os.environ.get('SECRET_KEY') or secrets.token_hex(32)
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'sash_sms_prod_secret_key_9981247128934'
 
     # ── Database ─────────────────────────────────────────────────────────────
     SQLALCHEMY_DATABASE_URI = _get_db_uri()
