@@ -7,6 +7,8 @@ from app.models.activity import ActivityLog, News
 from datetime import datetime, timedelta
 from sqlalchemy import func, or_
 
+from app.services.rate_limiter import rate_limit_authenticated
+
 main_bp = Blueprint('main', __name__)
 
 
@@ -15,6 +17,7 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route('/agent/')
 @main_bp.route('/agent/dashboard')
 @login_required
+@rate_limit_authenticated
 def dashboard():
     # Get SMS stats
     today = datetime.utcnow().date()

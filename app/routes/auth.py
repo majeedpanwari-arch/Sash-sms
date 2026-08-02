@@ -8,40 +8,16 @@ from functools import wraps
 import re
 import random
 
+from app.services.rate_limiter import rate_limiter, rate_limit_auth, rate_limit_public, rate_limit_authenticated
+
 auth_bp = Blueprint('auth', __name__)
 
 
-# ── Rate limiting (in-memory, per IP) ────────────────────────────────────────
-_rate_limit_store: dict = {}   # { key: (attempts, first_attempt) }
-
-
-def _check_rate_limit(ip: str, window: int = 300, max_attempts: int = 5) -> bool:
-    """Return True if the IP is within allowed attempts, False if blocked."""
-    key = f'login:{ip}'
-    now = datetime.utcnow()
-
-    if key in _rate_limit_store:
-        attempts, first = _rate_limit_store[key]
-        if now - first < timedelta(seconds=window):
-            if attempts >= max_attempts:
-                return False
-            _rate_limit_store[key] = (attempts + 1, first)
-        else:
-            _rate_limit_store[key] = (1, now)
-    else:
-        _rate_limit_store[key] = (1, now)
-    return True
-
-
-def _reset_rate_limit(ip: str):
-    key = f'login:{ip}'
-    _rate_limit_store.pop(key, None)
-
-
 def _refresh_captcha():
-    session['captcha_num1']  = random.randint(1, 9)
-    session['captcha_num2']  = random.randint(1, 9)
-    session['captcha_answer'] = session['captcha_num1'] + session['captcha_num2']
+    a = random.randint(1, 9)
+    b = random.randint(1, 9)
+    session['captcha_question'] = f"{a} + {b}"
+    session['captcha_answer']   = a + b
 
 
 # ── Routes ────────────────────────────────────────────────────────────────────
@@ -54,6 +30,7 @@ def index():
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
+@rate_limit_auth
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.dashboard'))
@@ -64,16 +41,18 @@ def login():
 
     # POST handler
     ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
-
-    # IP-level rate limit
-    if not _check_rate_limit(ip):
-        flash('Too many login attempts from your IP. Please wait 5 minutes.', 'danger')
-        _refresh_captcha()
-        return render_template('auth/login.html')
-
     username = request.form.get('username', '').strip()
     password = request.form.get('password', '')
     captcha  = request.form.get('capt', '')
+
+    # 1. Exponential Backoff Check (per-IP and per-Account)
+    is_blocked, remaining = rate_limiter.check_auth_exponential_backoff(username=username)
+    if is_blocked:
+        flash(f'Exponential backoff active due to recent failed attempts. Please wait {remaining} second(s) before trying again.', 'danger')
+        _refresh_captcha()
+        res = make_response(render_template('auth/login.html'), 429)
+        res.headers['Retry-After'] = str(remaining)
+        return res
 
     if not username or not password:
         flash('Please enter username and password.', 'danger')
@@ -84,10 +63,12 @@ def login():
     correct_answer = session.get('captcha_answer', -9999)
     try:
         if int(captcha) != correct_answer:
+            rate_limiter.record_auth_failure(username=username)
             flash('Incorrect captcha answer.', 'danger')
             _refresh_captcha()
             return render_template('auth/login.html')
     except ValueError:
+        rate_limiter.record_auth_failure(username=username)
         flash('Invalid captcha — please enter a number.', 'danger')
         _refresh_captcha()
         return render_template('auth/login.html')
@@ -100,12 +81,6 @@ def login():
             _refresh_captcha()
             return render_template('auth/login.html')
 
-        if user.locked_until and user.locked_until > datetime.utcnow():
-            remaining = int((user.locked_until - datetime.utcnow()).total_seconds() // 60)
-            flash(f'Account locked for {remaining} more minute(s).', 'danger')
-            _refresh_captcha()
-            return render_template('auth/login.html')
-
         if not user.api_token:
             user.generate_api_token()
 
@@ -114,7 +89,8 @@ def login():
         user.last_login     = datetime.utcnow()
         db.session.commit()
 
-        _reset_rate_limit(ip)
+        # Reset exponential backoff on successful login
+        rate_limiter.record_auth_success(username=username)
 
         ActivityLog.log(
             user.id, 'login', 'User logged in',
@@ -132,18 +108,13 @@ def login():
         return redirect(url_for('main.dashboard'))
 
     else:
-        # Failed login — per-user lockout
+        # Failed login — record exponential backoff failure per-IP & per-Account
+        rate_limiter.record_auth_failure(username=username)
         if user:
             user.login_attempts += 1
-            if user.login_attempts >= 5:
-                user.locked_until = datetime.utcnow() + timedelta(minutes=15)
-                flash('Too many failed attempts. Account locked for 15 minutes.', 'danger')
-            else:
-                remaining = 5 - user.login_attempts
-                flash(f'Invalid credentials. {remaining} attempt(s) remaining.', 'danger')
             db.session.commit()
-        else:
-            flash('Invalid username or password.', 'danger')
+
+        flash('Invalid username or password. Exponential delay applied.', 'danger')
 
     _refresh_captcha()
     return render_template('auth/login.html')

@@ -40,9 +40,22 @@ class Config:
     WTF_CSRF_ENABLED    = True
     WTF_CSRF_TIME_LIMIT = 3600
 
-    # ── Rate limiting ────────────────────────────────────────────────────────
-    LOGIN_ATTEMPT_LIMIT  = 5
-    LOGIN_ATTEMPT_WINDOW = 300
+    # ── Tiered Rate Limiting & Exponential Backoff Configuration ───────────────
+    # Auth Routes (Stricter limits)
+    RATELIMIT_AUTH_LIMIT          = int(os.environ.get('RATELIMIT_AUTH_LIMIT', 5))          # max 5 attempts
+    RATELIMIT_AUTH_WINDOW         = int(os.environ.get('RATELIMIT_AUTH_WINDOW', 60))        # per 60s
+    # Public Endpoints (Moderate limits)
+    RATELIMIT_PUBLIC_LIMIT        = int(os.environ.get('RATELIMIT_PUBLIC_LIMIT', 60))        # max 60 requests
+    RATELIMIT_PUBLIC_WINDOW       = int(os.environ.get('RATELIMIT_PUBLIC_WINDOW', 60))      # per 60s
+    # Authenticated User Actions (Looser limits)
+    RATELIMIT_AUTHENTICATED_LIMIT = int(os.environ.get('RATELIMIT_AUTHENTICATED_LIMIT', 300))# max 300 requests
+    RATELIMIT_AUTHENTICATED_WINDOW= int(os.environ.get('RATELIMIT_AUTHENTICATED_WINDOW', 60)) # per 60s
+
+    # Exponential Backoff Parameters for Auth Routes (Per-IP & Per-Account)
+    AUTH_BACKOFF_INITIAL_DELAY    = float(os.environ.get('AUTH_BACKOFF_INITIAL_DELAY', 2.0)) # Initial delay in seconds
+    AUTH_BACKOFF_FACTOR           = float(os.environ.get('AUTH_BACKOFF_FACTOR', 2.0))        # Multiplier (2s, 4s, 8s, 16s...)
+    AUTH_BACKOFF_MAX_DELAY        = float(os.environ.get('AUTH_BACKOFF_MAX_DELAY', 300.0))    # Maximum delay cap (5 minutes)
+    AUTH_BACKOFF_WINDOW_SECONDS   = int(os.environ.get('AUTH_BACKOFF_WINDOW_SECONDS', 900))   # Memory window (15 mins)
 
     # ── Registration ─────────────────────────────────────────────────────────
     REGISTRATION_ENABLED = os.environ.get('REGISTRATION_ENABLED', 'true').lower() == 'true'
