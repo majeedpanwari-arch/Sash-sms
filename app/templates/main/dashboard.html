@@ -18,49 +18,55 @@
 
 <!-- Statistics Cards -->
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-label">Today's SMS</div>
+            <div class="stat-label"><i class="fa fa-paper-plane" style="color: #D89A57;"></i> Today's SMS</div>
             <div class="stat-number">{{ today_sms if today_sms else 0 }}</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card green">
-            <div class="stat-label">This Week</div>
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-label"><i class="fa fa-calendar-check" style="color: #58B368;"></i> This Week</div>
             <div class="stat-number">{{ week_sms if week_sms else 0 }}</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card blue">
-            <div class="stat-label">This Month</div>
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-label"><i class="fa fa-chart-line" style="color: #E8A54B;"></i> This Month</div>
             <div class="stat-number">{{ month_sms if month_sms else 0 }}</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card orange">
-            <div class="stat-label">SMS Ranges</div>
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-label"><i class="fa fa-globe" style="color: #D89A57;"></i> SMS Ranges</div>
             <div class="stat-number">{{ ranges_count if ranges_count else 0 }}</div>
         </div>
     </div>
 </div>
 
-<div class="row" style="margin-top: 20px;">
-    <div class="col-md-3">
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-3 col-sm-6">
         <div class="stat-card">
-            <div class="stat-label">My Numbers</div>
+            <div class="stat-label"><i class="fa fa-phone-alt" style="color: #D89A57;"></i> My Numbers</div>
             <div class="stat-number">{{ numbers_count if numbers_count else 0 }}</div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card green">
-            <div class="stat-label">My Clients</div>
+    <div class="col-md-3 col-sm-6">
+        <div class="stat-card">
+            <div class="stat-label"><i class="fa fa-users" style="color: #58B368;"></i> My Clients</div>
             <div class="stat-number">{{ clients_count if clients_count else 0 }}</div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="stat-card blue">
-            <div class="stat-label">API Token</div>
-            <div class="stat-number" style="font-size: 14px;">{% if current_user and current_user.api_token %}{{ current_user.api_token[:32] }}...{% else %}<span style="color:#aaa;">No token — generate one in Settings</span>{% endif %}</div>
+    <div class="col-md-6 col-sm-12">
+        <div class="stat-card">
+            <div class="stat-label"><i class="fa fa-key" style="color: #D89A57;"></i> API Token</div>
+            <div class="stat-number" style="font-size: 13.5px !important; font-family: monospace; font-weight: 600;">
+                {% if current_user and current_user.api_token %}
+                    <code>{{ current_user.api_token[:32] }}...</code>
+                {% else %}
+                    <span class="text-muted" style="font-size: 12.5px;">No token generated</span>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

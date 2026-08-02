@@ -541,48 +541,67 @@ select.form-control option:checked {
 
 /* ── Stat Cards / Overview Widgets ────────────────────── */
 .stat-card {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: var(--shadow-card);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 20px !important;
+    padding: 22px 24px !important;
+    box-shadow: var(--shadow-card) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     position: relative;
     overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 108px !important;
+    margin-bottom: 20px !important;
 }
 
 .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px) !important;
+    box-shadow: var(--shadow-hover) !important;
+    border-color: rgba(216, 154, 87, 0.25) !important;
 }
 
 .stat-card .stat-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 14px;
-    background: rgba(216, 154, 87, 0.15);
+    background: rgba(216, 154, 87, 0.12);
     color: var(--primary-accent, #D89A57);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    margin-bottom: 16px;
-}
-
-.stat-card .stat-value {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--text-primary, #202020);
-    line-height: 1.1;
-    margin-bottom: 4px;
+    font-size: 18px;
+    margin-bottom: 12px;
 }
 
 .stat-card .stat-label {
-    font-size: 13px;
-    color: var(--text-secondary, #6D6D6D);
-    font-weight: 600;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    color: var(--text-secondary, #6D6D6D) !important;
+    margin-bottom: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+.stat-card .stat-label i {
+    font-size: 14px !important;
+}
+
+.stat-card .stat-number,
+.stat-card .stat-value {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.03em !important;
+    color: var(--text-primary, #202020) !important;
+    line-height: 1.1 !important;
+    margin-top: 2px !important;
+    word-break: break-all !important;
 }
 
 /* ── Code Blocks & Pre ────────────────────────────────── */
