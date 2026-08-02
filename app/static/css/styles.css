@@ -228,9 +228,9 @@ html.theme-dark select.form-control option, body.theme-dark select.form-control 
     color: #FFFFFF !important;
 }
 
-/* Dark Mode Tables */
+/* Dark Mode Tables & White Background Contrast Fixes */
 html.theme-dark .table-responsive, body.theme-dark .table-responsive {
-    background: rgba(18, 20, 29, 0.85) !important;
+    background: rgba(18, 20, 29, 0.88) !important;
     border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -240,13 +240,87 @@ html.theme-dark .table thead th, body.theme-dark .table thead th {
     border-bottom-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-html.theme-dark .table tbody td, body.theme-dark .table tbody td {
-    color: #E5E7EB !important;
-    border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+/* White background rows (odd rows & hovered rows) MUST have crisp dark text */
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd),
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd),
+html.theme-dark .table-hover > tbody > tr:hover,
+body.theme-dark .table-hover > tbody > tr:hover,
+html.theme-dark .table > tbody > tr:hover,
+body.theme-dark .table > tbody > tr:hover,
+html.theme-dark .table > tbody > tr.bg-white,
+body.theme-dark .table > tbody > tr.bg-white,
+html.theme-dark .table > tbody > tr.table-light,
+body.theme-dark .table > tbody > tr.table-light {
+    background: #FFFFFF !important;
+    color: #111827 !important;
 }
 
-html.theme-dark .table tbody tr:hover td, body.theme-dark .table tbody tr:hover td {
-    background: rgba(216, 154, 87, 0.16) !important;
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td,
+html.theme-dark .table-hover > tbody > tr:hover td,
+body.theme-dark .table-hover > tbody > tr:hover td,
+html.theme-dark .table > tbody > tr:hover td,
+body.theme-dark .table > tbody > tr:hover td,
+html.theme-dark .table > tbody > tr.bg-white td,
+body.theme-dark .table > tbody > tr.bg-white td {
+    color: #111827 !important;
+    font-weight: 500 !important;
+}
+
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td strong,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td strong,
+html.theme-dark .table-hover > tbody > tr:hover td strong,
+body.theme-dark .table-hover > tbody > tr:hover td strong,
+html.theme-dark .table > tbody > tr:hover td strong,
+body.theme-dark .table > tbody > tr:hover td strong {
+    color: #000000 !important;
+    font-weight: 700 !important;
+}
+
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td span,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td span,
+html.theme-dark .table-hover > tbody > tr:hover td span,
+body.theme-dark .table-hover > tbody > tr:hover td span,
+html.theme-dark .table > tbody > tr:hover td span,
+body.theme-dark .table > tbody > tr:hover td span,
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td a,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td a,
+html.theme-dark .table-hover > tbody > tr:hover td a,
+body.theme-dark .table-hover > tbody > tr:hover td a {
+    color: #374151 !important;
+}
+
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td .text-muted,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) td .text-muted,
+html.theme-dark .table-hover > tbody > tr:hover td .text-muted,
+body.theme-dark .table-hover > tbody > tr:hover td .text-muted {
+    color: #4B5563 !important;
+}
+
+html.theme-dark .table-striped > tbody > tr:nth-of-type(odd) .label-default,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(odd) .label-default,
+html.theme-dark .table-hover > tbody > tr:hover .label-default,
+body.theme-dark .table-hover > tbody > tr:hover .label-default {
+    background: #E5E7EB !important;
+    color: #111827 !important;
+    border: 1px solid #D1D5DB !important;
+}
+
+/* Even rows (non-white dark rows) keep dark obsidian background and white text */
+html.theme-dark .table-striped > tbody > tr:nth-of-type(even),
+body.theme-dark .table-striped > tbody > tr:nth-of-type(even) {
+    background: rgba(18, 20, 29, 0.88) !important;
+    color: #F3F4F6 !important;
+}
+
+html.theme-dark .table-striped > tbody > tr:nth-of-type(even) td,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(even) td {
+    color: #F3F4F6 !important;
+}
+
+html.theme-dark .table-striped > tbody > tr:nth-of-type(even) td strong,
+body.theme-dark .table-striped > tbody > tr:nth-of-type(even) td strong {
+    color: #FFFFFF !important;
 }
 
 /* Dark Mode Secondary Buttons */
