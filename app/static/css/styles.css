@@ -61,20 +61,20 @@
     --warn: #E8A54B;
 }
 
-/* ── Dark Mode Overrides (Warm Amber Obsidian Theme) ──── */
+/* ── Dark Mode Overrides (Warm Obsidian & Amber Gold Theme) ──── */
 html.theme-dark, body.theme-dark, .theme-dark {
-    --bg-primary: #0E0F14;
-    --bg-secondary: #161822;
-    --bg-tertiary: #1C1E2B;
-    --bg-card: rgba(22, 24, 34, 0.85);
-    --bg-card-hover: rgba(28, 30, 43, 0.95);
-    --bg-glass: rgba(22, 24, 34, 0.78);
-    --bg-sidebar: rgba(22, 24, 34, 0.85);
-    --bg-navbar: rgba(22, 24, 34, 0.85);
+    --bg-primary: #0A0B0E;
+    --bg-secondary: #12141D;
+    --bg-tertiary: #181B28;
+    --bg-card: rgba(18, 20, 29, 0.88);
+    --bg-card-hover: rgba(26, 29, 42, 0.95);
+    --bg-glass: rgba(18, 20, 29, 0.82);
+    --bg-sidebar: rgba(18, 20, 29, 0.88);
+    --bg-navbar: rgba(18, 20, 29, 0.88);
 
     --primary-accent: #D89A57;
     --secondary-accent: #E9C69B;
-    --highlight: rgba(216, 154, 87, 0.15);
+    --highlight: rgba(216, 154, 87, 0.18);
 
     --text-primary: #F3F4F6;
     --text-secondary: #9CA3AF;
@@ -82,24 +82,186 @@ html.theme-dark, body.theme-dark, .theme-dark {
 
     --border-subtle: rgba(255, 255, 255, 0.08);
     --border-glass: rgba(255, 255, 255, 0.1);
-    --border-accent: rgba(216, 154, 87, 0.3);
-    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(216, 154, 87, 0.06);
+    --border-accent: rgba(216, 154, 87, 0.35);
+    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
 
-    --bg: #0E0F14;
-    --card: #161822;
-    --hover: rgba(216, 154, 87, 0.14);
+    --bg: #0A0B0E;
+    --card: #12141D;
+    --hover: rgba(216, 154, 87, 0.16);
     --border: rgba(255, 255, 255, 0.08);
     --txt: #F3F4F6;
     --muted: #9CA3AF;
 }
 
 html.theme-dark body, body.theme-dark {
-    background-color: #0E0F14 !important;
+    background-color: #0A0B0E !important;
     background-image: 
         radial-gradient(at 0% 0%, rgba(216, 154, 87, 0.18) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(22, 24, 34, 0.9) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(14, 15, 20, 0.9) 0px, transparent 50%) !important;
+        radial-gradient(at 100% 0%, rgba(18, 20, 29, 0.95) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(10, 11, 14, 0.95) 0px, transparent 50%) !important;
     color: #F3F4F6 !important;
+}
+
+/* Dark Mode Ambient Light Blobs */
+html.theme-dark body::before, body.theme-dark::before {
+    background: radial-gradient(circle, rgba(216, 154, 87, 0.22) 0%, rgba(0, 0, 0, 0) 70%) !important;
+}
+html.theme-dark body::after, body.theme-dark::after {
+    background: radial-gradient(circle, rgba(30, 33, 48, 0.6) 0%, rgba(0, 0, 0, 0) 70%) !important;
+}
+
+/* Dark Mode Container & Glass Overrides */
+html.theme-dark .widget-block, html.theme-dark .card, html.theme-dark .panel, html.theme-dark .container-login,
+body.theme-dark .widget-block, body.theme-dark .card, body.theme-dark .panel, body.theme-dark .container-login {
+    background: rgba(18, 20, 29, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+    color: #F3F4F6 !important;
+}
+
+html.theme-dark .widget-head, html.theme-dark .card-header, html.theme-dark .panel-heading,
+body.theme-dark .widget-head, body.theme-dark .card-header, body.theme-dark .panel-heading {
+    background: rgba(26, 29, 42, 0.7) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.theme-dark .widget-head h5, html.theme-dark .card-title, html.theme-dark .panel-title,
+body.theme-dark .widget-head h5, body.theme-dark .card-title, body.theme-dark .panel-title {
+    color: #F3F4F6 !important;
+}
+
+/* Dark Mode Stat Cards */
+html.theme-dark .stat-card, body.theme-dark .stat-card {
+    background: rgba(18, 20, 29, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.theme-dark .stat-card:hover, body.theme-dark .stat-card:hover {
+    background: rgba(26, 29, 42, 0.95) !important;
+    border-color: rgba(216, 154, 87, 0.35) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(216, 154, 87, 0.15) !important;
+}
+
+html.theme-dark .stat-card .stat-label, body.theme-dark .stat-card .stat-label {
+    color: #9CA3AF !important;
+}
+
+html.theme-dark .stat-card .stat-number, html.theme-dark .stat-card .stat-value,
+body.theme-dark .stat-card .stat-number, body.theme-dark .stat-card .stat-value {
+    color: #FFFFFF !important;
+}
+
+/* Dark Mode Topbar & Sidebar Overrides */
+html.theme-dark .topbar, body.theme-dark .topbar {
+    background: rgba(18, 20, 29, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.theme-dark .sidebar, body.theme-dark .sidebar {
+    background: rgba(18, 20, 29, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.theme-dark .sb-user, html.theme-dark .sb-divider, html.theme-dark .breadcrumb,
+body.theme-dark .sb-user, body.theme-dark .sb-divider, body.theme-dark .breadcrumb {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.theme-dark .sb-user-name, html.theme-dark .topbar-user strong, html.theme-dark .breadcrumb h4,
+body.theme-dark .sb-user-name, body.theme-dark .topbar-user strong, body.theme-dark .breadcrumb h4 {
+    color: #F3F4F6 !important;
+}
+
+html.theme-dark .sb-link, body.theme-dark .sb-link {
+    color: #9CA3AF !important;
+}
+
+html.theme-dark .sb-link i, body.theme-dark .sb-link i {
+    color: #6B7280 !important;
+}
+
+html.theme-dark .sb-link:hover, body.theme-dark .sb-link:hover {
+    background: rgba(216, 154, 87, 0.16) !important;
+    color: #FFFFFF !important;
+}
+
+html.theme-dark .sb-link:hover i, body.theme-dark .sb-link:hover i {
+    color: #D89A57 !important;
+}
+
+html.theme-dark .sb-link.active, body.theme-dark .sb-link.active {
+    background: linear-gradient(135deg, #D89A57 0%, #F1C27D 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 8px 20px rgba(216, 154, 87, 0.4) !important;
+}
+
+html.theme-dark .sb-sub, body.theme-dark .sb-sub {
+    background: rgba(10, 11, 14, 0.6) !important;
+}
+
+html.theme-dark .sb-label, body.theme-dark .sb-label {
+    color: #6B7280 !important;
+}
+
+/* Dark Mode Form Controls */
+html.theme-dark .form-control, html.theme-dark input[type="text"], html.theme-dark input[type="password"],
+html.theme-dark input[type="email"], html.theme-dark input[type="number"], html.theme-dark select, html.theme-dark textarea,
+body.theme-dark .form-control, body.theme-dark input[type="text"], body.theme-dark input[type="password"],
+body.theme-dark input[type="email"], body.theme-dark input[type="number"], body.theme-dark select, body.theme-dark textarea {
+    background: rgba(26, 29, 42, 0.90) !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    color: #FFFFFF !important;
+}
+
+html.theme-dark .form-control:focus, html.theme-dark input:focus, html.theme-dark select:focus, html.theme-dark textarea:focus,
+body.theme-dark .form-control:focus, body.theme-dark input:focus, body.theme-dark select:focus, body.theme-dark textarea:focus {
+    background: rgba(32, 36, 52, 0.95) !important;
+    border-color: #D89A57 !important;
+    box-shadow: 0 0 0 4px rgba(216, 154, 87, 0.22) !important;
+}
+
+html.theme-dark select.form-control option, body.theme-dark select.form-control option {
+    background-color: #12141D !important;
+    color: #FFFFFF !important;
+}
+
+/* Dark Mode Tables */
+html.theme-dark .table-responsive, body.theme-dark .table-responsive {
+    background: rgba(18, 20, 29, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.theme-dark .table thead th, body.theme-dark .table thead th {
+    background: rgba(26, 29, 42, 0.95) !important;
+    color: #9CA3AF !important;
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.theme-dark .table tbody td, body.theme-dark .table tbody td {
+    color: #E5E7EB !important;
+    border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.theme-dark .table tbody tr:hover td, body.theme-dark .table tbody tr:hover td {
+    background: rgba(216, 154, 87, 0.16) !important;
+}
+
+/* Dark Mode Secondary Buttons */
+html.theme-dark .btn-secondary, html.theme-dark .btn-default, html.theme-dark .btn-light,
+body.theme-dark .btn-secondary, body.theme-dark .btn-default, body.theme-dark .btn-light {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #F3F4F6 !important;
+}
+
+html.theme-dark .btn-secondary:hover, html.theme-dark .btn-default:hover, html.theme-dark .btn-light:hover,
+body.theme-dark .btn-secondary:hover, body.theme-dark .btn-default:hover, body.theme-dark .btn-light:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-color: rgba(216, 154, 87, 0.4) !important;
+    color: #F1C27D !important;
 }
 
 /* ── Reset & General Typography ──────────────────────── */
