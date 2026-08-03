@@ -15,6 +15,26 @@ def _get_db_uri():
     if db_url:
         if db_url.startswith('postgres://'):
             db_url = db_url.replace('postgres://', 'postgresql://', 1)
+        
+        # Auto-encode passwords with special characters (@, #, $, etc.) if unencoded
+        try:
+            if db_url.count('@') > 1 or '#' in db_url:
+                import urllib.parse
+                scheme_split = db_url.split('://', 1)
+                if len(scheme_split) == 2:
+                    scheme, rest = scheme_split
+                    last_at = rest.rfind('@')
+                    if last_at != -1:
+                        user_pass = rest[:last_at]
+                        host_part = rest[last_at+1:]
+                        if ':' in user_pass:
+                            user, passwd = user_pass.split(':', 1)
+                            passwd_unenc = urllib.parse.unquote(passwd)
+                            passwd_enc = urllib.parse.quote(passwd_unenc, safe='')
+                            db_url = f"{scheme}://{user}:{passwd_enc}@{host_part}"
+        except Exception as e:
+            print(f"[DB URI Parse Notice] {e}")
+
         if 'sslmode=' not in db_url and ('supabase' in db_url or 'postgresql://' in db_url):
             delimiter = '&' if '?' in db_url else '?'
             db_url = f"{db_url}{delimiter}sslmode=require"
