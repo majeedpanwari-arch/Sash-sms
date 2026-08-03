@@ -344,9 +344,9 @@
 
                     <div class="captcha-box">
                         <div class="captcha-question">
-                            What is {{ session.get('captcha_num1', 0) }} + {{ session.get('captcha_num2', 0) }} = ?
+                            What is {{ session.get('captcha_num1', 5) }} + {{ session.get('captcha_num2', 3) }} = ?
                         </div>
-                        <input type="number" name="capt" class="captcha-input" placeholder="Answer" required>
+                        <input type="number" name="capt" class="captcha-input" placeholder="Answer" required autocomplete="off">
                     </div>
 
                     <button type="submit" class="login-btn">Login</button>

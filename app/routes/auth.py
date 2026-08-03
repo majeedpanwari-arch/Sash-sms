@@ -16,6 +16,8 @@ auth_bp = Blueprint('auth', __name__)
 def _refresh_captcha():
     a = random.randint(1, 9)
     b = random.randint(1, 9)
+    session['captcha_num1']     = a
+    session['captcha_num2']     = b
     session['captcha_question'] = f"{a} + {b}"
     session['captcha_answer']   = a + b
 
