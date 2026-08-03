@@ -350,10 +350,6 @@
 </head>
 <body>
 
-<!-- ══ CUSTOM GLOWING POINTER CURSOR ═════════════════════════════════════ -->
-<div class="custom-cursor-dot" id="cursorDot"></div>
-<div class="custom-cursor-ring" id="cursorRing"></div>
-
 <!-- ══ TOPBAR ════════════════════════════════════════════════════════════ -->
 <div class="topbar">
     <button class="hamburger" onclick="toggleSidebar()" aria-label="menu">
@@ -655,43 +651,6 @@ setTimeout(function() {
         el.style.opacity = '0';
         setTimeout(function() { el.remove(); }, 500);
     });
-}, 6000);
-
-/* ── Custom Glowing Dot & Ring Follower Pointer ── */
-(function() {
-    var dot = document.getElementById('cursorDot');
-    var ring = document.getElementById('cursorRing');
-    if (!dot || !ring) return;
-
-    var mouseX = -100, mouseY = -100;
-    var ringX = -100, ringY = -100;
-
-    document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        dot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px) translate(-50%, -50%)';
-    });
-
-    function renderRing() {
-        ringX += (mouseX - ringX) * 0.25;
-        ringY += (mouseY - ringY) * 0.25;
-        ring.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px) translate(-50%, -50%)';
-        requestAnimationFrame(renderRing);
-    }
-    requestAnimationFrame(renderRing);
-
-    document.addEventListener('mouseover', function(e) {
-        if (e.target.closest('a, button, input, select, textarea, .btn, .sb-link, tr, .stat-card, .theme-toggle, .page-link, .widget-block')) {
-            document.body.classList.add('cursor-hover');
-        }
-    });
-
-    document.addEventListener('mouseout', function(e) {
-        if (e.target.closest('a, button, input, select, textarea, .btn, .sb-link, tr, .stat-card, .theme-toggle, .page-link, .widget-block')) {
-            document.body.classList.remove('cursor-hover');
-        }
-    });
-})();
 </script>
 </body>
 </html>
