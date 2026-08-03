@@ -12,13 +12,13 @@
                     <div class="alert alert-info">
                         <strong>Current Status:</strong><br>
                         Numbers you have: <strong>{{ current_numbers }}</strong> / {{ max_numbers }} maximum<br>
-                        <div class="progress mt-2" style="height: 20px;">
+                        <div class="progress mt-2" style="height: 24px;">
+                            <span class="progress-text">{{ current_numbers }} / {{ max_numbers }} maximum</span>
                             <div class="progress-bar" role="progressbar"
                                  style="width: {{ (current_numbers / max_numbers * 100)|round }}%;"
                                  aria-valuenow="{{ current_numbers }}"
                                  aria-valuemin="0"
                                  aria-valuemax="{{ max_numbers }}">
-                                {{ current_numbers }} / {{ max_numbers }}
                             </div>
                         </div>
                     </div>
