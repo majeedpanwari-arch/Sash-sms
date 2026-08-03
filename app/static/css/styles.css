@@ -6,107 +6,97 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ── Design Tokens ──────────────────────────────────── */
-/* ── Design Tokens (Pulse SMS Blue & Crisp Light Theme) ───── */
+/* ── Material Design Pulse Theme Tokens ───────────────────── */
 :root {
-    /* Color Palette */
-    --bg-primary: #F0F4F8;
-    --bg-secondary: #E4E9F2;
-    --bg-tertiary: #D8E0ED;
-    --bg-card: rgba(255, 255, 255, 0.92);
+    /* Colors */
+    --primary-color: #1665C0;
+    --primary-hover: #42A5F5;
+    --primary-accent: #1665C0;
+    --secondary-accent: #42A5F5;
+
+    --bg-primary: #F5F7FA;
+    --bg-secondary: #EBF0F7;
+    --bg-tertiary: #E0E7F2;
+    --bg-card: #FFFFFF;
     --bg-card-hover: #FFFFFF;
-    --bg-glass: rgba(255, 255, 255, 0.85);
-    --bg-sidebar: rgba(255, 255, 255, 0.90);
-    --bg-navbar: rgba(255, 255, 255, 0.90);
+    --bg-glass: rgba(255, 255, 255, 0.95);
+    --bg-sidebar: #FFFFFF;
+    --bg-navbar: #FFFFFF;
 
-    /* Accents & Highlights — Pulse Blue */
-    --primary-accent: #1565C0;
-    --secondary-accent: #1976D2;
-    --highlight: rgba(21, 101, 192, 0.12);
-    --accent-gradient: linear-gradient(135deg, #1565C0 0%, #1E88E5 100%);
-    --accent-glow: 0 8px 24px rgba(21, 101, 192, 0.35);
+    --text-primary: #1A1A1A;
+    --text-secondary: #6B7280;
+    --text-muted: #6B7280;
 
-    /* Text Colors */
-    --text-primary: #101828;
-    --text-secondary: #475467;
-    --text-muted: #667085;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-glass: rgba(0, 0, 0, 0.06);
+    --border-accent: rgba(22, 101, 192, 0.25);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 4px 16px rgba(22, 101, 192, 0.15);
 
-    /* Borders & Shadows */
-    --border-subtle: rgba(16, 24, 40, 0.08);
-    --border-glass: rgba(255, 255, 255, 0.8);
-    --border-accent: rgba(21, 101, 192, 0.25);
-    --shadow-card: 0 12px 32px rgba(16, 24, 40, 0.06), 0 2px 8px rgba(21, 101, 192, 0.04);
-    --shadow-hover: 0 18px 48px rgba(16, 24, 40, 0.10), 0 8px 24px rgba(21, 101, 192, 0.20);
-
-    /* Border Radii */
-    --radius-card: 16px;
-    --radius-button: 999px;
-    --radius-input: 12px;
+    /* Border Radii (8-12px) */
+    --radius-card: 10px;
+    --radius-button: 10px;
+    --radius-input: 10px;
     --radius-badge: 999px;
 
     /* Status Colors */
-    --status-success: #12B76A;
-    --status-warning: #F79009;
-    --status-danger: #F04438;
-    --status-info: #1565C0;
+    --status-success: #10B981;
+    --status-warning: #F59E0B;
+    --status-danger: #EF4444;
+    --status-info: #1665C0;
 
     /* Legacy compatibility mappings */
-    --bg: #F0F4F8;
+    --bg: #F5F7FA;
     --card: #FFFFFF;
-    --hover: #E4E9F2;
-    --border: rgba(16, 24, 40, 0.08);
-    --txt: #101828;
-    --muted: #667085;
-    --accent: #1565C0;
-    --danger: #F04438;
-    --success: #12B76A;
-    --warn: #F79009;
+    --hover: #EBF0F7;
+    --border: rgba(0, 0, 0, 0.08);
+    --txt: #1A1A1A;
+    --muted: #6B7280;
+    --accent: #1665C0;
+    --danger: #EF4444;
+    --success: #10B981;
+    --warn: #F59E0B;
 }
 
-/* ── Pulse SMS Dark Mode Overrides (Midnight Electric Pulse Theme) ──── */
+/* ── Dark Mode Overrides (Charcoal / Navy) ───────────────── */
 html.theme-dark, body.theme-dark, .theme-dark {
-    --bg-primary: #0B0E17;
-    --bg-secondary: #121826;
-    --bg-tertiary: #192236;
-    --bg-card: rgba(18, 24, 38, 0.90);
-    --bg-card-hover: rgba(25, 34, 54, 0.96);
-    --bg-glass: rgba(18, 24, 38, 0.85);
-    --bg-sidebar: rgba(18, 24, 38, 0.92);
-    --bg-navbar: rgba(18, 24, 38, 0.92);
+    --bg-primary: #121212;
+    --bg-secondary: #1A1F2B;
+    --bg-tertiary: #222938;
+    --bg-card: #1E2430;
+    --bg-card-hover: #262D3D;
+    --bg-glass: rgba(30, 36, 48, 0.95);
+    --bg-sidebar: #1E2430;
+    --bg-navbar: #1E2430;
 
-    --primary-accent: #2196F3;
-    --secondary-accent: #64B5F6;
-    --highlight: rgba(33, 150, 243, 0.22);
-    --accent-gradient: linear-gradient(135deg, #1976D2 0%, #2196F3 100%);
-    --accent-glow: 0 8px 24px rgba(33, 150, 243, 0.4);
+    --primary-accent: #1665C0;
+    --secondary-accent: #42A5F5;
 
-    --text-primary: #F0F4F8;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
+    --text-primary: #F0F0F0;
+    --text-secondary: #6B7280;
+    --text-muted: #6B7280;
 
     --border-subtle: rgba(255, 255, 255, 0.08);
     --border-glass: rgba(255, 255, 255, 0.12);
-    --border-accent: rgba(33, 150, 243, 0.35);
-    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(33, 150, 243, 0.15);
+    --border-accent: rgba(66, 165, 245, 0.35);
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
 
-    --bg: #0B0E17;
-    --card: #121826;
-    --hover: rgba(33, 150, 243, 0.18);
+    --bg: #121212;
+    --card: #1E2430;
+    --hover: #262D3D;
     --border: rgba(255, 255, 255, 0.08);
-    --txt: #F0F4F8;
-    --muted: #94A3B8;
-    --accent: #2196F3;
-    --danger: #F87171;
-    --success: #4ADE80;
-    --warn: #FBBF24;
+    --txt: #F0F0F0;
+    --muted: #6B7280;
+    --accent: #1665C0;
+    --danger: #EF4444;
+    --success: #10B981;
+    --warn: #F59E0B;
 }
 
 html.theme-dark body, body.theme-dark {
-    background-color: #0B0E17 !important;
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(21, 101, 192, 0.25) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(18, 24, 38, 0.95) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(11, 14, 23, 0.95) 0px, transparent 50%) !important;
-    color: #F0F4F8 !important;
+    background-color: #121212 !important;
+    background-image: linear-gradient(180deg, #121212 0%, #1A1F2B 100%) !important;
+    color: #F0F0F0 !important;
 }
 
 /* Dark Mode Ambient Light Blobs */
@@ -564,39 +554,43 @@ html.theme-dark .theme-toggle:hover, body.theme-dark .theme-toggle:hover {
     color: #F1C27D !important;
 }
 
-/* ── Primary Warm Amber Gradient Button ──────────────── */
+/* ── Primary Material Blue Solid Button ──────────────── */
 .btn-primary, .btn-submit, .login-btn {
-    background: var(--accent-gradient, linear-gradient(135deg, #D89A57 0%, #F1C27D 100%)) !important;
+    background: #1665C0 !important;
     color: #ffffff !important;
     border: none !important;
-    box-shadow: 0 8px 24px rgba(216, 154, 87, 0.30) !important;
+    border-radius: var(--radius-button, 10px) !important;
+    box-shadow: 0 2px 8px rgba(22, 101, 192, 0.25) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-primary:hover, .btn-submit:hover, .login-btn:hover {
-    transform: translateY(-4px) scale(1.02) !important;
-    box-shadow: 0 12px 30px rgba(216, 154, 87, 0.45) !important;
+    background: #1255A3 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 14px rgba(22, 101, 192, 0.35) !important;
     color: #ffffff !important;
 }
 
 .btn-primary:active, .btn-submit:active, .login-btn:active {
-    transform: translateY(-1px) scale(0.99) !important;
+    transform: translateY(0) scale(0.99) !important;
 }
 
-/* Secondary White Glass Button */
+/* Secondary Button */
 .btn-secondary, .btn-default, .btn-light {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08)) !important;
-    color: var(--text-primary, #202020) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03) !important;
+    background: #FFFFFF !important;
+    border: 1.5px solid var(--border-subtle, rgba(0, 0, 0, 0.12)) !important;
+    color: var(--text-primary, #1A1A1A) !important;
+    border-radius: var(--radius-button, 10px) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease !important;
 }
 
 .btn-secondary:hover, .btn-default:hover, .btn-light:hover {
-    background: #FFFFFF !important;
-    border-color: rgba(216, 154, 87, 0.4) !important;
-    color: var(--primary-accent, #D89A57) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
+    background: #F5F7FA !important;
+    border-color: #1665C0 !important;
+    color: #1665C0 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Success Emerald Button */
