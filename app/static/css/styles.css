@@ -832,44 +832,45 @@ html.theme-dark .nav-3liner-icon-btn:hover i, body.theme-dark .nav-3liner-icon-b
 
 /* ── Right Side Navigation Drawer ─────────────────── */
 .right-drawer-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: 2500;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    z-index: 99990 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .right-drawer-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }
 
 .right-drawer-panel {
-    position: fixed;
-    top: 0;
-    right: -340px;
-    width: 300px;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-left: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.15);
-    z-index: 2505;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: fixed !important;
+    top: 0 !important;
+    right: -320px !important;
+    width: 300px !important;
+    height: 100vh !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.2) !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .right-drawer-panel.active {
-    transform: translateX(-340px);
+    right: 0 !important;
+    transform: none !important;
 }
 
 html.theme-dark .right-drawer-panel, body.theme-dark .right-drawer-panel {

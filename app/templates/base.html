@@ -373,7 +373,7 @@
         <a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
 
         <!-- Top Right 3-Liner Navigation Menu Icon Button -->
-        <button class="nav-3liner-icon-btn" id="rightDrawerBtn" onclick="toggleRightDrawer()" title="Navigation Menu">
+        <button type="button" class="nav-3liner-icon-btn" id="rightDrawerBtn" onclick="toggleRightDrawer(event)" title="Navigation Menu">
             <i class="fa fa-bars"></i>
         </button>
     </div>
@@ -608,7 +608,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ── Right Side Navigation Drawer Toggle ────────── */
-function toggleRightDrawer() {
+function toggleRightDrawer(e) {
+    if (e && e.preventDefault) e.preventDefault();
     var panel = document.getElementById('rightDrawerPanel');
     var overlay = document.getElementById('rightDrawerOverlay');
     if (!panel || !overlay) return;
