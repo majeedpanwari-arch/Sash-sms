@@ -66,10 +66,13 @@ def create_app(config_name='default'):
     try:
         db.init_app(app)
         with app.app_context():
+            db.engine.connect().close()
             _ensure_seed_data()
     except Exception as e:
         print(f"[DB Connection Notice] {e}. Falling back to SQLite /tmp/sash_sms.db")
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/sash_sms.db'
+        if hasattr(app, 'extensions') and 'sqlalchemy' in app.extensions:
+            del app.extensions['sqlalchemy']
         db.init_app(app)
         with app.app_context():
             _ensure_seed_data()
