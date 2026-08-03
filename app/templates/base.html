@@ -376,9 +376,9 @@
         </span>
         <a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
 
-        <!-- Top Right 3-Liner Navigation Menu Button -->
-        <button class="nav-3liner-btn" id="rightDrawerBtn" onclick="toggleRightDrawer()" title="Quick Navigation Menu">
-            <i class="fa fa-bars"></i> <span>Tabs</span>
+        <!-- Top Right 3-Liner Navigation Menu Icon Button -->
+        <button class="nav-3liner-icon-btn" id="rightDrawerBtn" onclick="toggleRightDrawer()" title="Navigation Menu">
+            <i class="fa fa-bars"></i>
         </button>
     </div>
 </div>
@@ -388,7 +388,7 @@
 <aside class="right-drawer-panel" id="rightDrawerPanel">
     <div class="rd-header">
         <div class="rd-title">
-            <i class="fa fa-compass" style="color:var(--accent, #D89A57);"></i> Quick Navigation
+            <i class="fa fa-compass" style="color:var(--accent, #D89A57);"></i> Navigation Menu
         </div>
         <button class="rd-close-btn" onclick="toggleRightDrawer()" title="Close Navigation"><i class="fa fa-times"></i></button>
     </div>
@@ -398,16 +398,16 @@
         <div class="rd-section">
             <div class="rd-section-label">AGENT</div>
             <a href="{{ url_for('admin.agent_my_numbers') }}" class="rd-item">
-                <i class="fa fa-user-circle"></i> My Account <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-user-circle-o"></i> My Account
             </a>
             <a href="{{ url_for('admin.agent_add_numbers') }}" class="rd-item">
-                <i class="fa fa-plus-circle"></i> Add Numbers <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-plus-circle"></i> Add Numbers
             </a>
             <a href="{{ url_for('admin.agent_create_client') }}" class="rd-item">
-                <i class="fa fa-user-plus"></i> Add Client <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-user-plus"></i> Add Client
             </a>
             <a href="{{ url_for('main.clients') }}" class="rd-item">
-                <i class="fa fa-users"></i> My Clients <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-users"></i> My Clients
             </a>
         </div>
         {% endif %}
@@ -416,10 +416,10 @@
         <div class="rd-section">
             <div class="rd-section-label">DEVELOPER</div>
             <a href="{{ url_for('dev.index') }}" class="rd-item">
-                <i class="fa fa-code"></i> Static Assets <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-code"></i> Static Assets
             </a>
             <a href="{{ url_for('dev.pages_list') }}" class="rd-item">
-                <i class="fa fa-file-code-o"></i> HTML Pages <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-file-code-o"></i> HTML Pages
             </a>
         </div>
         {% endif %}
@@ -427,13 +427,13 @@
         <div class="rd-section">
             <div class="rd-section-label">ACCOUNT</div>
             <a href="{{ url_for('main.profile') }}" class="rd-item">
-                <i class="fa fa-user"></i> Profile <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-user-o"></i> Profile
             </a>
             <a href="{{ url_for('main.profile') }}" class="rd-item">
-                <i class="fa fa-cog"></i> Settings <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-cog"></i> Settings
             </a>
             <a href="{{ url_for('main.my_activity') }}" class="rd-item">
-                <i class="fa fa-history"></i> Activity <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-clock-o"></i> Activity
             </a>
         </div>
 
@@ -441,44 +441,31 @@
         <div class="rd-section">
             <div class="rd-section-label" style="color:var(--danger, #F36B6B);">ADMIN</div>
             <a href="{{ url_for('admin.index') }}" class="rd-item">
-                <i class="fa fa-shield"></i> Admin Panel <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-shield"></i> Admin Panel
             </a>
             <a href="{{ url_for('admin.users') }}" class="rd-item">
-                <i class="fa fa-users"></i> Manage Users <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-users"></i> Manage Users
             </a>
             <a href="{{ url_for('admin.sms_ranges') }}" class="rd-item">
-                <i class="fa fa-flag"></i> SMS Ranges <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-flag-o"></i> SMS Ranges
             </a>
             <a href="{{ url_for('admin.sms_numbers') }}" class="rd-item">
-                <i class="fa fa-phone"></i> SMS Numbers <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-phone"></i> SMS Numbers
             </a>
             <a href="{{ url_for('admin.sms_cdr') }}" class="rd-item">
-                <i class="fa fa-file-text"></i> CDR Reports <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-file-text-o"></i> CDR Reports
             </a>
             <a href="{{ url_for('admin.activity_logs') }}" class="rd-item">
-                <i class="fa fa-history"></i> Activity Logs <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-history"></i> Activity Logs
             </a>
             <a href="{{ url_for('rings.rings_list') }}" class="rd-item" style="color:#ffd700;">
-                <i class="fa fa-circle"></i> Rings Management <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-circle-o"></i> Rings Management
             </a>
             <a href="{{ url_for('rings.codes_list') }}" class="rd-item" style="color:#ffd700;">
-                <i class="fa fa-key"></i> Access Codes <i class="fa fa-chevron-right rd-arrow"></i>
+                <i class="fa fa-key"></i> Access Codes
             </a>
         </div>
         {% endif %}
-
-        <div class="rd-section">
-            <div class="rd-section-label">SMS</div>
-            <a href="{{ url_for('main.sms_ranges') }}" class="rd-item">
-                <i class="fa fa-flag"></i> SMS Ranges <i class="fa fa-chevron-right rd-arrow"></i>
-            </a>
-            <a href="{{ url_for('main.my_sms_numbers') }}" class="rd-item">
-                <i class="fa fa-list-ol"></i> My Numbers <i class="fa fa-chevron-right rd-arrow"></i>
-            </a>
-            <a href="{{ url_for('main.inbox') }}" class="rd-item">
-                <i class="fa fa-inbox"></i> Inbox <i class="fa fa-chevron-right rd-arrow"></i>
-            </a>
-        </div>
     </div>
 </aside>
 
@@ -544,133 +531,6 @@
                 <i class="fa fa-bell"></i> Notifications
             </a>
         </li>
-
-        {% if current_user.is_agent() or current_user.is_admin() %}
-        <div class="sb-divider"></div>
-        <div class="sb-label">Agent</div>
-
-        <!-- Agent accordion -->
-        <li>
-            <span class="sb-link {% if request.endpoint in ('admin.agent_add_numbers','admin.agent_my_numbers','admin.agent_create_client','admin.agent_clients') %}active open{% endif %}"
-                  onclick="toggleAccordion(this,'sub-agent')">
-                <i class="fa fa-user-circle"></i> My Account
-                <i class="fa fa-chevron-right sb-arrow"></i>
-            </span>
-            <ul class="sb-sub {% if request.endpoint in ('admin.agent_add_numbers','admin.agent_my_numbers','admin.agent_create_client','admin.agent_clients') %}expanded{% endif %}"
-                id="sub-agent">
-                <li><a href="{{ url_for('admin.agent_add_numbers') }}"
-                       class="sb-link {% if request.endpoint == 'admin.agent_add_numbers' %}active{% endif %}">
-                    <i class="fa fa-plus-circle"></i> Add Numbers
-                </a></li>
-                <li><a href="{{ url_for('admin.agent_my_numbers') }}"
-                       class="sb-link {% if request.endpoint == 'admin.agent_my_numbers' %}active{% endif %}">
-                    <i class="fa fa-list-ol"></i> My Numbers
-                </a></li>
-                <li><a href="{{ url_for('admin.agent_create_client') }}"
-                       class="sb-link {% if request.endpoint == 'admin.agent_create_client' %}active{% endif %}">
-                    <i class="fa fa-user-plus"></i> Add Client
-                </a></li>
-                <li><a href="{{ url_for('main.clients') }}"
-                       class="sb-link {% if request.endpoint == 'main.clients' %}active{% endif %}">
-                    <i class="fa fa-users"></i> My Clients
-                </a></li>
-                <li><a href="{{ url_for('admin.admin_add_numbers_to_client') }}"
-                       class="sb-link {% if request.endpoint == 'admin.admin_add_numbers_to_client' %}active{% endif %}">
-                    <i class="fa fa-phone-square"></i> Add Numbers to Client
-                </a></li>
-                <li><a href="{{ url_for('main.agent_api_settings') }}"
-                       class="sb-link {% if request.endpoint == 'main.agent_api_settings' %}active{% endif %}">
-                    <i class="fa fa-key"></i> API Settings
-                </a></li>
-            </ul>
-        </li>
-        {% endif %}
-
-        {% if current_user.is_developer() %}
-        <div class="sb-divider"></div>
-        <div class="sb-label">Developer</div>
-        <li>
-            <span class="sb-link {% if request.endpoint and request.endpoint.startswith('dev.') %}active open{% endif %}"
-                  onclick="toggleAccordion(this,'sub-dev')">
-                <i class="fa fa-code"></i> Static Assets
-                <i class="fa fa-chevron-right sb-arrow"></i>
-            </span>
-            <ul class="sb-sub {% if request.endpoint and request.endpoint.startswith('dev.') %}expanded{% endif %}"
-                id="sub-dev">
-                <li><a href="{{ url_for('dev.index') }}"
-                       class="sb-link {% if request.endpoint == 'dev.index' %}active{% endif %}">
-                    <i class="fa fa-th"></i> All Assets
-                </a></li>
-                <li><a href="{{ url_for('dev.upload') }}?type=img"
-                       class="sb-link"><i class="fa fa-image"></i> Images
-                </a></li>
-                <li><a href="{{ url_for('dev.upload') }}?type=css"
-                       class="sb-link"><i class="fa fa-paint-brush"></i> CSS
-                </a></li>
-                <li><a href="{{ url_for('dev.upload') }}?type=js"
-                       class="sb-link"><i class="fa fa-bolt"></i> JavaScript
-                </a></li>
-                <li><a href="{{ url_for('dev.pages_list') }}"
-                       class="sb-link {% if request.endpoint in ('dev.pages_list','dev.page_view') %}active{% endif %}">
-                    <i class="fa fa-file-code-o"></i> HTML Pages
-                </a></li>
-                <li><a href="{{ url_for('dev.upload') }}?type=html"
-                       class="sb-link"><i class="fa fa-plus"></i> New Page
-                </a></li>
-            </ul>
-        </li>
-        {% endif %}
-
-        <div class="sb-divider"></div>
-        <div class="sb-label">Account</div>
-
-        <li>
-            <a href="{{ url_for('main.profile') }}"
-               class="sb-link {% if request.endpoint == 'main.profile' %}active{% endif %}">
-                <i class="fa fa-user"></i> Profile
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('main.profile') }}"
-               class="sb-link {% if request.endpoint == 'main.profile' %}active{% endif %}">
-                <i class="fa fa-cog"></i> Settings
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('main.my_activity') }}"
-               class="sb-link {% if request.endpoint == 'main.my_activity' %}active{% endif %}">
-                <i class="fa fa-history"></i> Activity
-            </a>
-        </li>
-
-        {% if current_user.is_admin() %}
-        <div class="sb-divider"></div>
-        <div class="sb-label" style="color:var(--danger);">Admin</div>
-        <li>
-            <span class="sb-link {% if request.endpoint and request.endpoint.startswith('admin.') %}active open{% endif %}"
-                  style="color:var(--danger);"
-                  onclick="toggleAccordion(this,'sub-admin')">
-                <i class="fa fa-shield"></i> Admin Panel
-                <i class="fa fa-chevron-right sb-arrow"></i>
-            </span>
-            <ul class="sb-sub {% if request.endpoint and request.endpoint.startswith('admin.') %}expanded{% endif %}"
-                id="sub-admin">
-                <li><a href="{{ url_for('admin.index') }}"         class="sb-link"><i class="fa fa-dashboard"></i> Overview</a></li>
-                <li><a href="{{ url_for('admin.users') }}"         class="sb-link"><i class="fa fa-users"></i> Users</a></li>
-                <li><a href="{{ url_for('admin.sms_ranges') }}"    class="sb-link"><i class="fa fa-flag"></i> Ranges</a></li>
-                <li><a href="{{ url_for('admin.sms_numbers') }}"   class="sb-link"><i class="fa fa-phone"></i> Numbers</a></li>
-                <li><a href="{{ url_for('admin.sms_cdr') }}"       class="sb-link"><i class="fa fa-file-text"></i> CDR</a></li>
-                <li><a href="{{ url_for('admin.activity_logs') }}" class="sb-link"><i class="fa fa-history"></i> Logs</a></li>
-                <li><a href="{{ url_for('admin.telegram_settings') }}" class="sb-link"><i class="fa fa-telegram"></i> Telegram Bot</a></li>
-                <li><a href="{{ url_for('admin.test123_bot_settings') }}" class="sb-link"><i class="fa fa-android"></i> Test123 Bot</a></li>
-                <li><a href="{{ url_for('admin.api_settings') }}"   class="sb-link"><i class="fa fa-key"></i> API Settings</a></li>
-                <li><a href="{{ url_for('admin.smpp_settings') }}"  class="sb-link"><i class="fa fa-server"></i> SMPP Server</a></li>
-                <li><a href="{{ url_for('monitor.index') }}"       class="sb-link"><i class="fa fa-rss"></i> SMS Monitor</a></li>
-                <li><a href="{{ url_for('rings.rings_list') }}"   class="sb-link" style="color:#ffd700;"><i class="fa fa-circle"></i> <strong>Rings Management</strong></a></li>
-                <li><a href="{{ url_for('rings.codes_list') }}"   class="sb-link" style="color:#ffd700;"><i class="fa fa-key"></i> <strong>Access Codes</strong></a></li>
-            </ul>
-        </li>
-        {% endif %}
     </ul>
 </nav>
 
