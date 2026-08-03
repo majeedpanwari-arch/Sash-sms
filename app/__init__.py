@@ -96,12 +96,19 @@ def create_app(config_name='default'):
         except (ValueError, TypeError):
             return None
 
-        user = User.query.get(uid)
-        if not user:
-            # On Vercel serverless cold-start across containers, ensure seed executes if user is missing
-            _ensure_seed_data()
+        try:
             user = User.query.get(uid)
-        return user
+            if not user:
+                _ensure_seed_data()
+                user = User.query.get(uid)
+            return user
+        except Exception as e:
+            print(f"[User Load Warning] {e}")
+            try:
+                db.session.rollback()
+            except Exception:
+                pass
+            return None
 
     # ── Jinja2 Filters ──────────────────────────────────────────────────────────
     @app.template_filter('mask_last_7')
