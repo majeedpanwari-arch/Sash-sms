@@ -364,62 +364,6 @@
     </a>
     <div class="topbar-spacer"></div>
     <div class="topbar-user">
-        <!-- Top Right 3-Liner Navigation Menu Button & Select Dropdown -->
-        <div class="top-nav-container">
-            <button class="nav-3liner-btn" id="topNavBtn" onclick="toggleTopNavMenu()" title="Quick Navigation Tabs">
-                <i class="fa fa-bars"></i> <span>Tabs</span>
-            </button>
-            <div class="top-nav-menu-box" id="topNavMenuBox">
-                <label style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--accent,#D89A57); margin-bottom:6px; display:block;">
-                    <i class="fa fa-compass"></i> Select Navigation Tab:
-                </label>
-                <select id="topQuickNavSelect" class="form-control top-nav-select" onchange="if(this.value){ window.location.href=this.value; }">
-                    <option value="">-- Choose Tab --</option>
-                    
-                    {% if current_user.is_agent() or current_user.is_admin() %}
-                    <optgroup label="AGENT">
-                        <option value="{{ url_for('admin.agent_my_numbers') }}">👤 My Account</option>
-                        <option value="{{ url_for('admin.agent_add_numbers') }}">➕ Add Numbers</option>
-                        <option value="{{ url_for('admin.agent_create_client') }}">👤 Add Client</option>
-                        <option value="{{ url_for('main.clients') }}">👥 My Clients</option>
-                    </optgroup>
-                    {% endif %}
-
-                    {% if current_user.is_developer() or current_user.is_admin() %}
-                    <optgroup label="DEVELOPER">
-                        <option value="{{ url_for('dev.index') }}">⚡ Static Assets</option>
-                        <option value="{{ url_for('dev.pages_list') }}">📄 HTML Pages</option>
-                    </optgroup>
-                    {% endif %}
-
-                    <optgroup label="ACCOUNT">
-                        <option value="{{ url_for('main.profile') }}">👤 Profile</option>
-                        <option value="{{ url_for('main.profile') }}">⚙️ Settings</option>
-                        <option value="{{ url_for('main.my_activity') }}">🕒 Activity</option>
-                    </optgroup>
-
-                    {% if current_user.is_admin() %}
-                    <optgroup label="ADMIN">
-                        <option value="{{ url_for('admin.index') }}">🛡️ Admin Panel</option>
-                        <option value="{{ url_for('admin.users') }}">👥 Manage Users</option>
-                        <option value="{{ url_for('admin.sms_ranges') }}">🚩 SMS Ranges</option>
-                        <option value="{{ url_for('admin.sms_numbers') }}">📞 SMS Numbers</option>
-                        <option value="{{ url_for('admin.sms_cdr') }}">📑 CDR Reports</option>
-                        <option value="{{ url_for('admin.activity_logs') }}">📜 Activity Logs</option>
-                        <option value="{{ url_for('rings.rings_list') }}">⭐ Rings Management</option>
-                        <option value="{{ url_for('rings.codes_list') }}">🔑 Access Codes</option>
-                    </optgroup>
-                    {% endif %}
-
-                    <optgroup label="SMS">
-                        <option value="{{ url_for('main.sms_ranges') }}">🚩 Ranges</option>
-                        <option value="{{ url_for('main.my_sms_numbers') }}">📞 My Numbers</option>
-                        <option value="{{ url_for('main.inbox') }}">📥 Inbox</option>
-                    </optgroup>
-                </select>
-            </div>
-        </div>
-
         <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
             <i class="fa fa-moon" id="themeIcon" style="color: #D89A57;"></i>
             <span id="themeLabel">Dark</span>
@@ -431,8 +375,112 @@
             <span style="margin:0 6px;opacity:.4;">|</span>
         </span>
         <a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+
+        <!-- Top Right 3-Liner Navigation Menu Button -->
+        <button class="nav-3liner-btn" id="rightDrawerBtn" onclick="toggleRightDrawer()" title="Quick Navigation Menu">
+            <i class="fa fa-bars"></i> <span>Tabs</span>
+        </button>
     </div>
 </div>
+
+<!-- ══ RIGHT SIDE NAVIGATION DRAWER OVERLAY & PANEL ═════════════════════ -->
+<div class="right-drawer-overlay" id="rightDrawerOverlay" onclick="toggleRightDrawer()"></div>
+<aside class="right-drawer-panel" id="rightDrawerPanel">
+    <div class="rd-header">
+        <div class="rd-title">
+            <i class="fa fa-compass" style="color:var(--accent, #D89A57);"></i> Quick Navigation
+        </div>
+        <button class="rd-close-btn" onclick="toggleRightDrawer()" title="Close Navigation"><i class="fa fa-times"></i></button>
+    </div>
+
+    <div class="rd-body">
+        {% if current_user.is_agent() or current_user.is_admin() %}
+        <div class="rd-section">
+            <div class="rd-section-label">AGENT</div>
+            <a href="{{ url_for('admin.agent_my_numbers') }}" class="rd-item">
+                <i class="fa fa-user-circle"></i> My Account <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.agent_add_numbers') }}" class="rd-item">
+                <i class="fa fa-plus-circle"></i> Add Numbers <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.agent_create_client') }}" class="rd-item">
+                <i class="fa fa-user-plus"></i> Add Client <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('main.clients') }}" class="rd-item">
+                <i class="fa fa-users"></i> My Clients <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+        </div>
+        {% endif %}
+
+        {% if current_user.is_developer() or current_user.is_admin() %}
+        <div class="rd-section">
+            <div class="rd-section-label">DEVELOPER</div>
+            <a href="{{ url_for('dev.index') }}" class="rd-item">
+                <i class="fa fa-code"></i> Static Assets <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('dev.pages_list') }}" class="rd-item">
+                <i class="fa fa-file-code-o"></i> HTML Pages <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+        </div>
+        {% endif %}
+
+        <div class="rd-section">
+            <div class="rd-section-label">ACCOUNT</div>
+            <a href="{{ url_for('main.profile') }}" class="rd-item">
+                <i class="fa fa-user"></i> Profile <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('main.profile') }}" class="rd-item">
+                <i class="fa fa-cog"></i> Settings <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('main.my_activity') }}" class="rd-item">
+                <i class="fa fa-history"></i> Activity <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+        </div>
+
+        {% if current_user.is_admin() %}
+        <div class="rd-section">
+            <div class="rd-section-label" style="color:var(--danger, #F36B6B);">ADMIN</div>
+            <a href="{{ url_for('admin.index') }}" class="rd-item">
+                <i class="fa fa-shield"></i> Admin Panel <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.users') }}" class="rd-item">
+                <i class="fa fa-users"></i> Manage Users <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.sms_ranges') }}" class="rd-item">
+                <i class="fa fa-flag"></i> SMS Ranges <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.sms_numbers') }}" class="rd-item">
+                <i class="fa fa-phone"></i> SMS Numbers <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.sms_cdr') }}" class="rd-item">
+                <i class="fa fa-file-text"></i> CDR Reports <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('admin.activity_logs') }}" class="rd-item">
+                <i class="fa fa-history"></i> Activity Logs <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('rings.rings_list') }}" class="rd-item" style="color:#ffd700;">
+                <i class="fa fa-circle"></i> Rings Management <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('rings.codes_list') }}" class="rd-item" style="color:#ffd700;">
+                <i class="fa fa-key"></i> Access Codes <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+        </div>
+        {% endif %}
+
+        <div class="rd-section">
+            <div class="rd-section-label">SMS</div>
+            <a href="{{ url_for('main.sms_ranges') }}" class="rd-item">
+                <i class="fa fa-flag"></i> SMS Ranges <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('main.my_sms_numbers') }}" class="rd-item">
+                <i class="fa fa-list-ol"></i> My Numbers <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+            <a href="{{ url_for('main.inbox') }}" class="rd-item">
+                <i class="fa fa-inbox"></i> Inbox <i class="fa fa-chevron-right rd-arrow"></i>
+            </a>
+        </div>
+    </div>
+</aside>
 
 <!-- ══ SIDEBAR OVERLAY (mobile tap to close) ═════════════════════════════ -->
 <div class="sb-overlay" id="sbOverlay" onclick="toggleSidebar()"></div>
@@ -703,22 +751,14 @@ document.addEventListener('DOMContentLoaded', function() {
     updateThemeUI(savedTheme === 'dark');
 });
 
-/* ── Top Navigation 3-Liner Menu Toggle ────────── */
-function toggleTopNavMenu() {
-    var box = document.getElementById('topNavMenuBox');
-    if (!box) return;
-    var isVisible = box.style.display === 'block';
-    box.style.display = isVisible ? 'none' : 'block';
+/* ── Right Side Navigation Drawer Toggle ────────── */
+function toggleRightDrawer() {
+    var panel = document.getElementById('rightDrawerPanel');
+    var overlay = document.getElementById('rightDrawerOverlay');
+    if (!panel || !overlay) return;
+    panel.classList.toggle('active');
+    overlay.classList.toggle('active');
 }
-
-// Close top nav menu when clicking outside
-document.addEventListener('click', function(e) {
-    var container = document.querySelector('.top-nav-container');
-    var box = document.getElementById('topNavMenuBox');
-    if (container && box && !container.contains(e.target)) {
-        box.style.display = 'none';
-    }
-});
 
 /* ── Sidebar toggle (mobile) ──────────────────── */
 function toggleSidebar() {
