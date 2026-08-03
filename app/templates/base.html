@@ -14,7 +14,7 @@
     </script>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/static/css/styles.css" rel="stylesheet">
+    <link href="/static/css/styles.css?v=3.5" rel="stylesheet">
     {% block extra_css %}{% endblock %}
     <style>
     /* ── CSS Variables — Pulse SMS Blue & Midnight Theme ─────────────────────────── */
@@ -609,12 +609,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ── Right Side Navigation Drawer Toggle ────────── */
 function toggleRightDrawer(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
     if (e && e.preventDefault) e.preventDefault();
     var panel = document.getElementById('rightDrawerPanel');
     var overlay = document.getElementById('rightDrawerOverlay');
     if (!panel || !overlay) return;
-    panel.classList.toggle('active');
-    overlay.classList.toggle('active');
+
+    var isOpen = panel.classList.contains('active') || panel.style.right === '0px';
+
+    if (isOpen) {
+        panel.classList.remove('active');
+        overlay.classList.remove('active');
+        panel.style.right = '-340px';
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+    } else {
+        panel.classList.add('active');
+        overlay.classList.add('active');
+        panel.style.right = '0px';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+    }
 }
 
 /* ── Sidebar toggle (mobile) ──────────────────── */

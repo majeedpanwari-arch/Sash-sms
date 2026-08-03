@@ -788,6 +788,9 @@ html.theme-dark .progress-text, body.theme-dark .progress-text {
 
 /* ── Top Right 3-Liner Navigation Menu Icon Button ───────── */
 .nav-3liner-icon-btn {
+    position: relative !important;
+    z-index: 1080 !important;
+    pointer-events: auto !important;
     background: transparent !important;
     border: 1.5px solid var(--border-subtle, rgba(0, 0, 0, 0.12)) !important;
     color: var(--text-primary, #101828) !important;
