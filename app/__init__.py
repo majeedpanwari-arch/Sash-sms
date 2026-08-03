@@ -63,7 +63,16 @@ def create_app(config_name='default'):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
 
-    db.init_app(app)
+    try:
+        db.init_app(app)
+        with app.app_context():
+            _ensure_seed_data()
+    except Exception as e:
+        print(f"[DB Connection Notice] {e}. Falling back to SQLite /tmp/sash_sms.db")
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/sash_sms.db'
+        db.init_app(app)
+        with app.app_context():
+            _ensure_seed_data()
     login_manager.init_app(app)
     bcrypt.init_app(app)
 
