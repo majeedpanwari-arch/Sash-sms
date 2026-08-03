@@ -779,6 +779,91 @@ html.theme-dark .progress-text, body.theme-dark .progress-text {
     box-shadow: 0 0 12px rgba(216, 154, 87, 0.4) !important;
 }
 
+/* ── Top Right 3-Liner Navigation Menu ──────────────── */
+.top-nav-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-3liner-btn {
+    background: rgba(216, 154, 87, 0.14) !important;
+    border: 1.5px solid rgba(216, 154, 87, 0.35) !important;
+    color: var(--text-primary, #202020) !important;
+    padding: 7px 15px !important;
+    border-radius: 999px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 4px 12px rgba(216, 154, 87, 0.10) !important;
+}
+
+.nav-3liner-btn i {
+    font-size: 15px !important;
+    color: #D89A57 !important;
+}
+
+.nav-3liner-btn:hover {
+    background: #FFFFFF !important;
+    border-color: #D89A57 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(216, 154, 87, 0.25) !important;
+}
+
+html.theme-dark .nav-3liner-btn, body.theme-dark .nav-3liner-btn {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    color: #FFFFFF !important;
+}
+
+html.theme-dark .nav-3liner-btn:hover, body.theme-dark .nav-3liner-btn:hover {
+    background: rgba(26, 29, 42, 0.95) !important;
+    border-color: #D89A57 !important;
+    color: #F1C27D !important;
+}
+
+/* Top Nav Select Menu Dropdown Overlay */
+.top-nav-menu-box {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1.5px solid rgba(216, 154, 87, 0.3) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15), 0 5px 18px rgba(216, 154, 87, 0.18) !important;
+    padding: 14px !important;
+    z-index: 2000 !important;
+    animation: topNavFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes topNavFade {
+    from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+html.theme-dark .top-nav-menu-box, body.theme-dark .top-nav-menu-box {
+    background: rgba(18, 20, 29, 0.98) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 5px 20px rgba(216, 154, 87, 0.25) !important;
+}
+
+.top-nav-select {
+    width: 100% !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+    padding: 6px 36px 6px 14px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+}
+
 /* ── Tables Styling ──────────────────────────────────── */
 .table-responsive {
     border-radius: 18px !important;

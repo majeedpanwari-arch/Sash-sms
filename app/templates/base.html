@@ -364,6 +364,62 @@
     </a>
     <div class="topbar-spacer"></div>
     <div class="topbar-user">
+        <!-- Top Right 3-Liner Navigation Menu Button & Select Dropdown -->
+        <div class="top-nav-container">
+            <button class="nav-3liner-btn" id="topNavBtn" onclick="toggleTopNavMenu()" title="Quick Navigation Tabs">
+                <i class="fa fa-bars"></i> <span>Tabs</span>
+            </button>
+            <div class="top-nav-menu-box" id="topNavMenuBox">
+                <label style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--accent,#D89A57); margin-bottom:6px; display:block;">
+                    <i class="fa fa-compass"></i> Select Navigation Tab:
+                </label>
+                <select id="topQuickNavSelect" class="form-control top-nav-select" onchange="if(this.value){ window.location.href=this.value; }">
+                    <option value="">-- Choose Tab --</option>
+                    
+                    {% if current_user.is_agent() or current_user.is_admin() %}
+                    <optgroup label="AGENT">
+                        <option value="{{ url_for('admin.agent_my_numbers') }}">👤 My Account</option>
+                        <option value="{{ url_for('admin.agent_add_numbers') }}">➕ Add Numbers</option>
+                        <option value="{{ url_for('admin.agent_create_client') }}">👤 Add Client</option>
+                        <option value="{{ url_for('main.clients') }}">👥 My Clients</option>
+                    </optgroup>
+                    {% endif %}
+
+                    {% if current_user.is_developer() or current_user.is_admin() %}
+                    <optgroup label="DEVELOPER">
+                        <option value="{{ url_for('dev.index') }}">⚡ Static Assets</option>
+                        <option value="{{ url_for('dev.pages_list') }}">📄 HTML Pages</option>
+                    </optgroup>
+                    {% endif %}
+
+                    <optgroup label="ACCOUNT">
+                        <option value="{{ url_for('main.profile') }}">👤 Profile</option>
+                        <option value="{{ url_for('main.profile') }}">⚙️ Settings</option>
+                        <option value="{{ url_for('main.my_activity') }}">🕒 Activity</option>
+                    </optgroup>
+
+                    {% if current_user.is_admin() %}
+                    <optgroup label="ADMIN">
+                        <option value="{{ url_for('admin.index') }}">🛡️ Admin Panel</option>
+                        <option value="{{ url_for('admin.users') }}">👥 Manage Users</option>
+                        <option value="{{ url_for('admin.sms_ranges') }}">🚩 SMS Ranges</option>
+                        <option value="{{ url_for('admin.sms_numbers') }}">📞 SMS Numbers</option>
+                        <option value="{{ url_for('admin.sms_cdr') }}">📑 CDR Reports</option>
+                        <option value="{{ url_for('admin.activity_logs') }}">📜 Activity Logs</option>
+                        <option value="{{ url_for('rings.rings_list') }}">⭐ Rings Management</option>
+                        <option value="{{ url_for('rings.codes_list') }}">🔑 Access Codes</option>
+                    </optgroup>
+                    {% endif %}
+
+                    <optgroup label="SMS">
+                        <option value="{{ url_for('main.sms_ranges') }}">🚩 Ranges</option>
+                        <option value="{{ url_for('main.my_sms_numbers') }}">📞 My Numbers</option>
+                        <option value="{{ url_for('main.inbox') }}">📥 Inbox</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+
         <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
             <i class="fa fa-moon" id="themeIcon" style="color: #D89A57;"></i>
             <span id="themeLabel">Dark</span>
@@ -645,6 +701,23 @@ function toggleTheme() {
 document.addEventListener('DOMContentLoaded', function() {
     var savedTheme = localStorage.getItem('sash_theme');
     updateThemeUI(savedTheme === 'dark');
+});
+
+/* ── Top Navigation 3-Liner Menu Toggle ────────── */
+function toggleTopNavMenu() {
+    var box = document.getElementById('topNavMenuBox');
+    if (!box) return;
+    var isVisible = box.style.display === 'block';
+    box.style.display = isVisible ? 'none' : 'block';
+}
+
+// Close top nav menu when clicking outside
+document.addEventListener('click', function(e) {
+    var container = document.querySelector('.top-nav-container');
+    var box = document.getElementById('topNavMenuBox');
+    if (container && box && !container.contains(e.target)) {
+        box.style.display = 'none';
+    }
 });
 
 /* ── Sidebar toggle (mobile) ──────────────────── */
