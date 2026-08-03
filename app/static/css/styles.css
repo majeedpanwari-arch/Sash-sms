@@ -6,108 +6,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ── Design Tokens ──────────────────────────────────── */
+/* ── Design Tokens (Pulse SMS Blue & Crisp Light Theme) ───── */
 :root {
     /* Color Palette */
-    --bg-primary: #FFF8F3;
-    --bg-secondary: #FAF6F2;
-    --bg-tertiary: #F7F2EE;
-    --bg-card: rgba(255, 255, 255, 0.80);
-    --bg-card-hover: rgba(255, 255, 255, 0.95);
-    --bg-glass: rgba(255, 255, 255, 0.72);
-    --bg-sidebar: rgba(255, 255, 255, 0.75);
-    --bg-navbar: rgba(255, 255, 255, 0.80);
+    --bg-primary: #F0F4F8;
+    --bg-secondary: #E4E9F2;
+    --bg-tertiary: #D8E0ED;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --bg-card-hover: #FFFFFF;
+    --bg-glass: rgba(255, 255, 255, 0.85);
+    --bg-sidebar: rgba(255, 255, 255, 0.90);
+    --bg-navbar: rgba(255, 255, 255, 0.90);
 
-    /* Accents & Highlights */
-    --primary-accent: #D89A57;
-    --secondary-accent: #E9C69B;
-    --highlight: #F3E2CF;
-    --accent-gradient: linear-gradient(135deg, #D89A57 0%, #F1C27D 100%);
-    --accent-glow: 0 8px 24px rgba(216, 154, 87, 0.3);
+    /* Accents & Highlights — Pulse Blue */
+    --primary-accent: #1565C0;
+    --secondary-accent: #1976D2;
+    --highlight: rgba(21, 101, 192, 0.12);
+    --accent-gradient: linear-gradient(135deg, #1565C0 0%, #1E88E5 100%);
+    --accent-glow: 0 8px 24px rgba(21, 101, 192, 0.35);
 
     /* Text Colors */
-    --text-primary: #202020;
-    --text-secondary: #6D6D6D;
-    --text-muted: #8E8E93;
+    --text-primary: #101828;
+    --text-secondary: #475467;
+    --text-muted: #667085;
 
     /* Borders & Shadows */
-    --border-subtle: rgba(0, 0, 0, 0.06);
-    --border-glass: rgba(255, 255, 255, 0.6);
-    --border-accent: rgba(216, 154, 87, 0.2);
-    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(216, 154, 87, 0.04);
-    --shadow-hover: 0 24px 70px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(216, 154, 87, 0.12);
+    --border-subtle: rgba(16, 24, 40, 0.08);
+    --border-glass: rgba(255, 255, 255, 0.8);
+    --border-accent: rgba(21, 101, 192, 0.25);
+    --shadow-card: 0 12px 32px rgba(16, 24, 40, 0.06), 0 2px 8px rgba(21, 101, 192, 0.04);
+    --shadow-hover: 0 18px 48px rgba(16, 24, 40, 0.10), 0 8px 24px rgba(21, 101, 192, 0.20);
 
     /* Border Radii */
-    --radius-card: 20px;
+    --radius-card: 16px;
     --radius-button: 999px;
-    --radius-input: 14px;
+    --radius-input: 12px;
     --radius-badge: 999px;
 
     /* Status Colors */
-    --status-success: #58B368;
-    --status-warning: #E8A54B;
-    --status-danger: #F36B6B;
-    --status-info: #D89A57;
+    --status-success: #12B76A;
+    --status-warning: #F79009;
+    --status-danger: #F04438;
+    --status-info: #1565C0;
 
     /* Legacy compatibility mappings */
-    --bg: #FFF8F3;
+    --bg: #F0F4F8;
     --card: #FFFFFF;
-    --hover: #F7F2EE;
-    --border: rgba(0, 0, 0, 0.06);
-    --txt: #202020;
-    --muted: #6D6D6D;
-    --accent: #D89A57;
-    --danger: #F36B6B;
-    --success: #58B368;
-    --warn: #E8A54B;
+    --hover: #E4E9F2;
+    --border: rgba(16, 24, 40, 0.08);
+    --txt: #101828;
+    --muted: #667085;
+    --accent: #1565C0;
+    --danger: #F04438;
+    --success: #12B76A;
+    --warn: #F79009;
 }
 
-/* ── Dark Mode Overrides (Warm Obsidian & Amber Gold Theme) ──── */
+/* ── Pulse SMS Dark Mode Overrides (Midnight Electric Pulse Theme) ──── */
 html.theme-dark, body.theme-dark, .theme-dark {
-    --bg-primary: #0A0B0E;
-    --bg-secondary: #12141D;
-    --bg-tertiary: #181B28;
-    --bg-card: rgba(18, 20, 29, 0.88);
-    --bg-card-hover: rgba(26, 29, 42, 0.95);
-    --bg-glass: rgba(18, 20, 29, 0.82);
-    --bg-sidebar: rgba(18, 20, 29, 0.88);
-    --bg-navbar: rgba(18, 20, 29, 0.88);
+    --bg-primary: #0B0E17;
+    --bg-secondary: #121826;
+    --bg-tertiary: #192236;
+    --bg-card: rgba(18, 24, 38, 0.90);
+    --bg-card-hover: rgba(25, 34, 54, 0.96);
+    --bg-glass: rgba(18, 24, 38, 0.85);
+    --bg-sidebar: rgba(18, 24, 38, 0.92);
+    --bg-navbar: rgba(18, 24, 38, 0.92);
 
-    --primary-accent: #D89A57;
-    --secondary-accent: #E9C69B;
-    --highlight: rgba(216, 154, 87, 0.18);
+    --primary-accent: #2196F3;
+    --secondary-accent: #64B5F6;
+    --highlight: rgba(33, 150, 243, 0.22);
+    --accent-gradient: linear-gradient(135deg, #1976D2 0%, #2196F3 100%);
+    --accent-glow: 0 8px 24px rgba(33, 150, 243, 0.4);
 
-    --text-primary: #F3F4F6;
-    --text-secondary: #9CA3AF;
-    --text-muted: #6B7280;
+    --text-primary: #F0F4F8;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
 
     --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-glass: rgba(255, 255, 255, 0.1);
-    --border-accent: rgba(216, 154, 87, 0.35);
-    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+    --border-glass: rgba(255, 255, 255, 0.12);
+    --border-accent: rgba(33, 150, 243, 0.35);
+    --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(33, 150, 243, 0.15);
 
-    --bg: #0A0B0E;
-    --card: #12141D;
-    --hover: rgba(216, 154, 87, 0.16);
+    --bg: #0B0E17;
+    --card: #121826;
+    --hover: rgba(33, 150, 243, 0.18);
     --border: rgba(255, 255, 255, 0.08);
-    --txt: #F3F4F6;
-    --muted: #9CA3AF;
+    --txt: #F0F4F8;
+    --muted: #94A3B8;
+    --accent: #2196F3;
+    --danger: #F87171;
+    --success: #4ADE80;
+    --warn: #FBBF24;
 }
 
 html.theme-dark body, body.theme-dark {
-    background-color: #0A0B0E !important;
+    background-color: #0B0E17 !important;
     background-image: 
-        radial-gradient(at 0% 0%, rgba(216, 154, 87, 0.18) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(18, 20, 29, 0.95) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(10, 11, 14, 0.95) 0px, transparent 50%) !important;
-    color: #F3F4F6 !important;
+        radial-gradient(at 0% 0%, rgba(21, 101, 192, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(18, 24, 38, 0.95) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(11, 14, 23, 0.95) 0px, transparent 50%) !important;
+    color: #F0F4F8 !important;
 }
 
 /* Dark Mode Ambient Light Blobs */
 html.theme-dark body::before, body.theme-dark::before {
-    background: radial-gradient(circle, rgba(216, 154, 87, 0.22) 0%, rgba(0, 0, 0, 0) 70%) !important;
+    background: radial-gradient(circle, rgba(33, 150, 243, 0.20) 0%, rgba(0, 0, 0, 0) 70%) !important;
 }
 html.theme-dark body::after, body.theme-dark::after {
-    background: radial-gradient(circle, rgba(30, 33, 48, 0.6) 0%, rgba(0, 0, 0, 0) 70%) !important;
+    background: radial-gradient(circle, rgba(21, 101, 192, 0.30) 0%, rgba(0, 0, 0, 0) 70%) !important;
 }
 
 /* Dark Mode Container & Glass Overrides */
@@ -184,26 +191,26 @@ html.theme-dark .sb-link i, body.theme-dark .sb-link i {
 }
 
 html.theme-dark .sb-link:hover, body.theme-dark .sb-link:hover {
-    background: rgba(216, 154, 87, 0.16) !important;
+    background: rgba(33, 150, 243, 0.16) !important;
     color: #FFFFFF !important;
 }
 
 html.theme-dark .sb-link:hover i, body.theme-dark .sb-link:hover i {
-    color: #D89A57 !important;
+    color: #2196F3 !important;
 }
 
 html.theme-dark .sb-link.active, body.theme-dark .sb-link.active {
-    background: linear-gradient(135deg, #D89A57 0%, #F1C27D 100%) !important;
+    background: linear-gradient(135deg, #1976D2 0%, #2196F3 100%) !important;
     color: #FFFFFF !important;
-    box-shadow: 0 8px 20px rgba(216, 154, 87, 0.4) !important;
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4) !important;
 }
 
 html.theme-dark .sb-sub, body.theme-dark .sb-sub {
-    background: rgba(10, 11, 14, 0.6) !important;
+    background: rgba(10, 14, 23, 0.6) !important;
 }
 
 html.theme-dark .sb-label, body.theme-dark .sb-label {
-    color: #6B7280 !important;
+    color: #64748B !important;
 }
 
 /* Dark Mode Form Controls */
@@ -211,20 +218,20 @@ html.theme-dark .form-control, html.theme-dark input[type="text"], html.theme-da
 html.theme-dark input[type="email"], html.theme-dark input[type="number"], html.theme-dark select, html.theme-dark textarea,
 body.theme-dark .form-control, body.theme-dark input[type="text"], body.theme-dark input[type="password"],
 body.theme-dark input[type="email"], body.theme-dark input[type="number"], body.theme-dark select, body.theme-dark textarea {
-    background: rgba(26, 29, 42, 0.90) !important;
+    background: rgba(18, 24, 38, 0.90) !important;
     border-color: rgba(255, 255, 255, 0.10) !important;
     color: #FFFFFF !important;
 }
 
 html.theme-dark .form-control:focus, html.theme-dark input:focus, html.theme-dark select:focus, html.theme-dark textarea:focus,
 body.theme-dark .form-control:focus, body.theme-dark input:focus, body.theme-dark select:focus, body.theme-dark textarea:focus {
-    background: rgba(32, 36, 52, 0.95) !important;
-    border-color: #D89A57 !important;
-    box-shadow: 0 0 0 4px rgba(216, 154, 87, 0.22) !important;
+    background: rgba(25, 34, 54, 0.95) !important;
+    border-color: #2196F3 !important;
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.22) !important;
 }
 
 html.theme-dark select.form-control option, body.theme-dark select.form-control option {
-    background-color: #12141D !important;
+    background-color: #121826 !important;
     color: #FFFFFF !important;
 }
 
@@ -773,17 +780,17 @@ html.theme-dark .progress-text, body.theme-dark .progress-text {
 
 .progress-bar {
     height: 100% !important;
-    background: var(--accent-gradient, linear-gradient(135deg, #D89A57 0%, #F1C27D 100%)) !important;
+    background: var(--accent-gradient, linear-gradient(135deg, #1565C0 0%, #1976D2 100%)) !important;
     border-radius: 999px !important;
     transition: width 0.6s ease !important;
-    box-shadow: 0 0 12px rgba(216, 154, 87, 0.4) !important;
+    box-shadow: 0 0 12px rgba(21, 101, 192, 0.4) !important;
 }
 
 /* ── Top Right 3-Liner Navigation Menu Icon Button ───────── */
 .nav-3liner-icon-btn {
     background: transparent !important;
     border: 1.5px solid var(--border-subtle, rgba(0, 0, 0, 0.12)) !important;
-    color: var(--text-primary, #202020) !important;
+    color: var(--text-primary, #101828) !important;
     width: 38px !important;
     height: 38px !important;
     border-radius: 12px !important;
@@ -798,17 +805,17 @@ html.theme-dark .progress-text, body.theme-dark .progress-text {
 
 .nav-3liner-icon-btn i {
     font-size: 16px !important;
-    color: var(--text-primary, #202020) !important;
+    color: var(--text-primary, #101828) !important;
 }
 
 .nav-3liner-icon-btn:hover {
-    background: rgba(216, 154, 87, 0.12) !important;
-    border-color: #D89A57 !important;
+    background: rgba(21, 101, 192, 0.12) !important;
+    border-color: #1565C0 !important;
     transform: translateY(-1px) !important;
 }
 
 .nav-3liner-icon-btn:hover i {
-    color: #D89A57 !important;
+    color: #1565C0 !important;
 }
 
 html.theme-dark .nav-3liner-icon-btn, body.theme-dark .nav-3liner-icon-btn {
@@ -823,11 +830,11 @@ html.theme-dark .nav-3liner-icon-btn i, body.theme-dark .nav-3liner-icon-btn i {
 
 html.theme-dark .nav-3liner-icon-btn:hover, body.theme-dark .nav-3liner-icon-btn:hover {
     background: rgba(255, 255, 255, 0.08) !important;
-    border-color: #D89A57 !important;
+    border-color: #2196F3 !important;
 }
 
 html.theme-dark .nav-3liner-icon-btn:hover i, body.theme-dark .nav-3liner-icon-btn:hover i {
-    color: #F1C27D !important;
+    color: #64B5F6 !important;
 }
 
 /* ── Right Side Navigation Drawer ─────────────────── */
@@ -995,12 +1002,12 @@ html.theme-dark .rd-section-label, body.theme-dark .rd-section-label {
 }
 
 .rd-item:hover {
-    background: rgba(216, 154, 87, 0.12) !important;
-    color: var(--primary-accent, #D89A57) !important;
+    background: rgba(21, 101, 192, 0.12) !important;
+    color: var(--primary-accent, #1565C0) !important;
 }
 
 .rd-item:hover i:first-child {
-    color: var(--primary-accent, #D89A57) !important;
+    color: var(--primary-accent, #1565C0) !important;
 }
 
 html.theme-dark .rd-item, body.theme-dark .rd-item {
@@ -1019,7 +1026,7 @@ html.theme-dark .rd-item:hover, body.theme-dark .rd-item:hover {
 }
 
 html.theme-dark .rd-item:hover i:first-child, body.theme-dark .rd-item:hover i:first-child {
-    color: #F1C27D !important;
+    color: #64B5F6 !important;
 }
 
 /* ── Tables Styling ──────────────────────────────────── */
