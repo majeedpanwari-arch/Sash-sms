@@ -14,7 +14,10 @@ def _get_db_uri():
     db_url = os.environ.get('DATABASE_URL')
     if db_url:
         if db_url.startswith('postgres://'):
-            return db_url.replace('postgres://', 'postgresql://', 1)
+            db_url = db_url.replace('postgres://', 'postgresql://', 1)
+        if 'sslmode=' not in db_url and ('supabase' in db_url or 'postgresql://' in db_url):
+            delimiter = '&' if '?' in db_url else '?'
+            db_url = f"{db_url}{delimiter}sslmode=require"
         return db_url
     if IS_VERCEL:
         return 'sqlite:////tmp/sash_sms.db'
